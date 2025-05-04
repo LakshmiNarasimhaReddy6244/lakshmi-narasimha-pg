@@ -1,186 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> PG Booking </title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: black;
-            font-family: 'Nobile', sans-serif;
-        }
-        .container {
-            background: white;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            padding: 2rem;
-            border-radius: 15px;
-            width: 100%;
-            max-width: 800px;
-            border: 1px solid rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .highlight {
-            background: rgba(255, 255, 255, 0.25);
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            width: 100%;
-        }
-        .booking-form {
-            background: #8b8e8be0; /* Light gray background */
-            padding: 2rem;
-            border-radius: 15px;
-            width: 100%;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            margin-top: 1rem;
-        }
-        input, select, button {
-            transition: all 0.3s ease;
-        }
-        input, select {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(0, 0, 0, 0.4);
-            color: black;
-            padding: 10px;
-            width: 100%;
-            border-radius: 8px;
-            margin-top: 0.5rem;
-        }
-        button {
-            background: linear-gradient(90deg, #facc15, #f97316);
-            color: black;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 1rem;
-        }
-        .contact-us {
-            background: #05c11e;
-            color: #d32f2f;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            width: 100%;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }    
-        button:hover {
-            transform: scale(1.05);
-            background: linear-gradient(90deg, #f97316, #ef4444);
-        }
-        h2, h3 {
-            margin-top: 1rem;
-        }
-        ul {
-            list-style-type: disc;
-            margin-left: 1.5rem;
-        }
-        .form-group {
-            margin-top: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BLESS PG Booking</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: black;
+      font-family: 'Nobile', sans-serif;
+    }
+    .container {
+      background: white;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 800px;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .highlight {
+      background: #fef3c7;
+      color: #b91c1c;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      margin-top: 1rem;
+      border: 1px solid #facc15;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .referral-bonus {
+      background: #f0f8ff;
+      color: #0000ff;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+    }
+    .booking-form {
+      background: #8b8e8be0;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+    }
+    input, select, button {
+      transition: all 0.3s ease;
+    }
+    input, select {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      color: black;
+      padding: 10px;
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+    }
+    button {
+      background: linear-gradient(90deg, #facc15, #f97316);
+      color: black;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #f97316, #ef4444);
+    }
+    .contact-us {
+      background: #05c11e;
+      color: #d32f2f;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    h2, h3 {
+      margin-top: 1rem;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+    }
+    .form-group {
+      margin-top: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <h2 class="text-3xl font-bold text-center mb-6"> PG Booking </h2>
-        <p class="text-center text-lg font-semibold mb-4">🏡 Your Home Away from Home 🏡</p>
-        <p class="text-center text-md mb-4">Experience the comfort and warmth of home at Lakshmi Narasimha PG, where we prioritize your well-being and convenience.</p>
 
-        <h3 class="text-xl font-bold mt-4">🏠 Why Choose Us?</h3>
-        <ul class="list-disc ml-5 text-sm">
-            <li>📍 Prime Location: Situated near Amity University Mumbai, ensuring minimal commute.</li>
-            <li>🍽 Home-Cooked Meals: Enjoy nutritious and delicious meals prepared daily.</li>
-            <li>🛏 Fully Furnished Rooms: Comfortable and cozy rooms designed to make you feel at home.</li>
-            <li>📶 High-Speed Wi-Fi: Stay connected with our reliable internet service.</li>
-            <li>🚰 Purified Drinking Water: Health and safety are our top priorities.</li>
-            <li>📹 24/7 CCTV Surveillance: Ensuring a secure living environment.</li>
-            <li>🔥 Continuous Hot Water Supply: For your comfort and convenience.</li>
-            <li>🧺 Laundry Facilities: Equipped with washing machines for your ease.</li>
-            <li>🚗 Ample Parking Space: Secure parking for your vehicles.</li>
-        </ul>
-        <h3 class="text-xl font-bold mt-4">💰 Affordable Pricing</h3>
-        <ul class="list-disc ml-5 text-sm">
-            <li>₹8,999/- per month</li>
-            <li>₹50,999/- per semester</li>
-            <li>₹95,999/- per year</li>
-        </ul>
+<body class="relative">
 
-        <h3 class="text-xl font-bold mt-4">🛡 Security Deposit</h3>
-        <p class="text-sm">A refundable security deposit of ₹5000/- is required at the time of booking.</p>
+  <!-- 🧭 Hamburger Menu Icon -->
+  <div class="absolute top-4 left-4 z-50">
+    <button id="menu-toggle" class="focus:outline-none">
+      <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
 
-        <h3 class="text-xl font-bold mt-4">🍽 Weekly Meal Plan</h3>
-        <ul class="list-disc ml-5 text-sm">
-            <li>Monday: Poha & Lemon Rice | Tomato Rice | Rice, Dal, Roti</li>
-            <li>Tuesday: Idli, Chutney, Sambar | Rice, Roti, Veg Fry | Vaangibaath</li>
-            <li>Wednesday: Poori, Khichdi | Rice + Chicken/Paneer | Chole Bhature</li>
-            <li>Thursday: Dosa, Chutney | Veg Biryani | Fried Rice, Noodles</li>
-            <li>Friday: Bonda, Chutneys | Tomato Rice | Rice, Egg Curry, Mushroom Masala</li>
-            <li>Saturday: Pav Bhaji | Bagara Rice | Rajma, Veg Fry</li>
-            <li>Sunday: Pasta, Noodles | Sambar Rice | Chicken/Panner Biryani</li>
-        </ul>
+  <!-- 🧭 Dropdown Menu -->
+  <div id="menu" class="absolute top-16 left-4 bg-white shadow-lg rounded-lg p-4 hidden z-50 border border-gray-300">
+    <ul class="space-y-2">
+      <li><a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Home</a></li>
+      <li><a href="#pricing" class="text-gray-800 hover:text-blue-600 font-medium">Pricing</a></li>
+      <li><a href="#why-choose" class="text-gray-800 hover:text-blue-600 font-medium">Facilities</a></li>
+      <li><a href="#meal-plan" class="text-gray-800 hover:text-blue-600 font-medium">Weekly Meal Plan</a></li>
+      <li><a href="#book-now" class="text-gray-800 hover:text-blue-600 font-medium">Book Now</a></li>
+      <li><a href="#contact" class="text-gray-800 hover:text-blue-600 font-medium">Contact</a></li>
+    </ul>
+  </div>
 
-        <div class="contact-us">
-            📞 Contact Us: <strong>8427764259</strong>
-        </div>
+  <div class="container">
+    <h2 class="text-3xl font-bold text-center mb-6">BLESS PG Booking</h2>
+    <p class="text-center text-lg font-semibold mb-4">🏡 Your Home Away from Home 🏡</p>
+    <p class="text-center text-md mb-4">Experience the comfort and warmth of home at <span class="font-bold text-blue-600">BLESS PG</span>, where we prioritize your well-being and convenience.</p>
 
-        <div class="booking-form">
-            <h3 class="text-2xl font-bold text-center mb-4">Book Your Stay Now!</h3>
-            <form class="space-y-4" action="https://formsubmit.co/jayasimhareddy6244@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="New PG Booking Request - Lakshmi Narasimha PG">
-                <input type="hidden" name="_captcha" value="false">
+    <!-- ✅ Facilities Section -->
+    <h3 class="text-xl font-bold mt-4" id="why-choose">🏠 Why Choose Us?</h3>
+    <ul class="list-disc ml-5 text-sm">
+      <li>📍 Prime Location: Situated near Amity University Mumbai, ensuring minimal commute.</li>
+      <li>🍽 Home-Cooked Meals: Enjoy nutritious and delicious meals prepared daily.</li>
+      <li>🛏 Fully Furnished Rooms: Comfortable and cozy rooms designed to make you feel at home.</li>
+      <li>📶 High-Speed Wi-Fi: Stay connected with our reliable internet service.</li>
+      <li>🚰 Purified Drinking Water: Health and safety are our top priorities.</li>
+      <li>📹 24/7 CCTV Surveillance: Ensuring a secure living environment.</li>
+      <li>🔥 Continuous Hot Water Supply: For your comfort and convenience.</li>
+      <li>🧺 Laundry Facilities: Equipped with washing machines for your ease.</li>
+      <li>🚗 Ample Parking Space: Secure parking for your vehicles.</li>
+    </ul>
 
-                <div class="form-group">
-                    <label class="font-semibold">Full Name</label>
-                    <input type="text" name="name" placeholder="Full Name" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="font-semibold">Email</label>
-                    <input type="email" name="email" placeholder="Email" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="font-semibold">Phone Number</label>
-                    <input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" title="Phone number should be 10 digits and only numbers">
-                </div>
-
-                <div class="form-group">
-                    <label class="font-semibold">Sharing Type</label>
-                    <select name="sharing" required>
-                        <option value="">Select Sharing Type</option>
-                        <option value="Single">Single Sharing</option>
-                        <option value="Double">Double Sharing</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="font-semibold">Time Period</label>
-                    <select name="time_period" required>
-                        <option value="">Select Time Period</option>
-                        <option value="1 Month">1 Month</option>
-                        <option value="6 Months">6 Months</option>
-                        <option value="1 Year">1 Year</option>
-                    </select>
-                </div>
-
-                <button type="submit">Book Now</button>
-            </form>
-        </div>
+    <div class="referral-bonus">
+      <p>💰 Referral Bonuses: Earn rewards by referring friends to <span class="font-bold text-blue-600">BLESS PG</span>. Get ₹1000/- for referral.</p>
     </div>
+
+    <!-- ✅ Pricing Section -->
+    <h3 class="text-xl font-bold mt-4" id="pricing">💰 Affordable Pricing</h3>
+    <ul class="list-disc ml-5 text-sm">
+      <li>₹8,999/- per month</li>
+      <li>₹50,999/- per semester</li>
+      <li>₹95,999/- per year</li>
+    </ul>
+
+    <div class="highlight">
+      🏷️ Stay starting from <span class="text-xl text-green-700 font-bold">₹7,999/-</span> per month 🎉
+      <p class="mt-2 text-black text-sm font-normal">By paying the total yearly amount at once.</p>
+    </div>
+
+    <h3 class="text-xl font-bold mt-4">🛡 Security Deposit</h3>
+    <p class="text-sm">A refundable security deposit of ₹5000/- is required at the time of booking.</p>
+
+    <!-- ✅ Weekly Meal Plan Section -->
+    <h3 class="text-xl font-bold mt-4" id="meal-plan">🍽 Weekly Meal Plan</h3>
+    <ul class="list-disc ml-5 text-sm">
+      <li>Monday: Poha & Lemon Rice | Tomato Rice | Rice, Dal, Roti</li>
+      <li>Tuesday: Idli, Chutney, Sambar | Rice, Roti, Veg Fry | Vaangibaath</li>
+      <li>Wednesday: Poori, Khichdi | Rice + Chicken/Paneer | Chole Bhature</li>
+      <li>Thursday: Dosa, Chutney | Veg Biryani | Fried Rice, Noodles</li>
+      <li>Friday: Bonda, Chutneys | Tomato Rice | Rice, Egg Curry, Mushroom Masala</li>
+      <li>Saturday: Pav Bhaji | Bagara Rice | Rajma, Veg Fry</li>
+      <li>Sunday: Pasta, Noodles | Sambar Rice | Chicken/Panner Biryani</li>
+    </ul>
+
+    <!-- ✅ Contact Section -->
+    <div class="contact-us" id="contact">
+      📞 Contact Us: <strong>+91 9063025417</strong>
+    </div>
+
+    <!-- ✅ Booking Section -->
+    <div class="booking-form" id="book-now">
+      <h3 class="text-2xl font-bold text-center mb-4">Book Your Stay Now!</h3>
+      <form class="space-y-4" action="https://formsubmit.co/jayasimhareddy6244@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New PG Booking Request - BLESS PG">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="form-group">
+          <label class="font-semibold">Full Name</label>
+          <input type="text" name="name" placeholder="Full Name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="font-semibold">Email</label>
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+
+        <div class="form-group">
+          <label class="font-semibold">Phone Number</label>
+          <input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" title="Phone number should be 10 digits and only numbers">
+        </div>
+
+        <div class="form-group">
+          <label class="font-semibold">Sharing Type</label>
+          <select name="sharing" required>
+            <option value="">Select Sharing Type</option>
+            <option value="Single">Single Sharing</option>
+            <option value="Double">Double Sharing</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="font-semibold">Time Period</label>
+          <select name="time_period" required>
+            <option value="">Select Time Period</option>
+            <option value="1 Month">1 Month</option>
+            <option value="6 Months">6 Months</option>
+            <option value="1 Year">1 Year</option>
+          </select>
+        </div>
+
+        <button type="submit">Book Now</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🧠 Toggle Script -->
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
