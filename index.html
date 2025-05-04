@@ -130,7 +130,7 @@
   <div id="menu" class="absolute top-16 left-4 bg-white shadow-lg rounded-lg p-4 hidden z-50 border border-gray-300">
     <ul class="space-y-2">
       <li><a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Home</a></li>
-      <li><a href="#pricing" class="text-gray-800 hover:text-blue-600 font-medium">Pricing</a></li>
+      <li><a href="#accommodation-options" class="text-gray-800 hover:text-blue-600 font-medium">Pricing</a></li>
       <li><a href="#why-choose" class="text-gray-800 hover:text-blue-600 font-medium">Facilities</a></li>
       <li><a href="#meal-plan" class="text-gray-800 hover:text-blue-600 font-medium">Weekly Meal Plan</a></li>
       <li><a href="#book-now" class="text-gray-800 hover:text-blue-600 font-medium">Book Now</a></li>
@@ -145,29 +145,45 @@
 
     <!-- ✅ Facilities Section -->
     <h3 class="text-xl font-bold mt-4" id="why-choose">🏠 Why Choose Us?</h3>
-    <ul class="list-disc ml-5 text-sm">
-      <li>📍 Prime Location: Situated near Amity University Mumbai, ensuring minimal commute.</li>
-      <li>🍽 Home-Cooked Meals: Enjoy nutritious and delicious meals prepared daily.</li>
-      <li>🛏 Fully Furnished Rooms: Comfortable and cozy rooms designed to make you feel at home.</li>
-      <li>📶 High-Speed Wi-Fi: Stay connected with our reliable internet service.</li>
-      <li>🚰 Purified Drinking Water: Health and safety are our top priorities.</li>
-      <li>📹 24/7 CCTV Surveillance: Ensuring a secure living environment.</li>
-      <li>🔥 Continuous Hot Water Supply: For your comfort and convenience.</li>
-      <li>🧺 Laundry Facilities: Equipped with washing machines for your ease.</li>
-      <li>🚗 Ample Parking Space: Secure parking for your vehicles.</li>
+    <ul class="text-sm">
+      <li>📍 Prime Location: Situated near Amity University Mumbai.</li>
+      <li>🍽 Daily Fresh Meals: Nutritious meals prepared daily.</li>
+      <li>🔌 Power Backup</li>
+      <li>🛏 Fully Furnished Rooms (including study table, cot, and wardrobe)</li>
+      <li>📶 High-Speed Wi-Fi</li>
+      <li>💪 GYM and Indoor Games</li>
+      <li>🔥 24/7 Hot Water</li>
+      <li>🚰 Purified Drinking Water</li>
+      <li>📹 CCTV Surveillance</li>
+      <li>🧺 Washing Machine</li>
+      <li>🧊 Refrigerator</li>
+      <li>🚗 Parking for 2/4 Wheelers</li>
+      <li>🧯 Common Gas Facility</li>
     </ul>
 
     <div class="referral-bonus">
-      <p>💰 Referral Bonuses: Earn rewards by referring friends to <span class="font-bold text-blue-600">BLESS PG</span>. Get ₹1000/- for referral.</p>
+      💰 Referral Bonuses: Earn ₹1000 by referring friends to <span class="text-blue-600 font-bold">BLESS PG</span>.
     </div>
 
     <!-- ✅ Pricing Section -->
-    <h3 class="text-xl font-bold mt-4" id="pricing">💰 Affordable Pricing</h3>
-    <ul class="list-disc ml-5 text-sm">
-      <li>₹8,999/- per month</li>
-      <li>₹50,999/- per semester</li>
-      <li>₹95,999/- per year</li>
-    </ul>
+    <h3 class="text-xl font-bold mt-4" id="accommodation-options">🏠 Accommodation Options</h3>
+    <div class="text-sm ml-5">
+      <p class="mt-2 font-semibold text-blue-800">🔹 2-Sharing</p>
+      <ul class="list-disc ml-5">
+        <li>💰 ₹8,999/month</li>
+        <li>₹50,999/semester</li>
+        <li>₹95,999/year</li>
+        <li>(Including Food)</li>
+      </ul>
+
+      <p class="mt-4 font-semibold text-blue-800">🔹 Single-Sharing</p>
+      <ul class="list-disc ml-5">
+        <li>💰 ₹14,999/month</li>
+        <li>₹86,999/semester</li>
+        <li>₹1,67,999/year</li>
+        <li>(Including Food)</li>
+      </ul>
+    </div>
 
     <div class="highlight">
       🏷️ Stay starting from <span class="text-xl text-green-700 font-bold">₹7,999/-</span> per month 🎉
@@ -186,7 +202,7 @@
       <li>Thursday: Dosa, Chutney | Veg Biryani | Fried Rice, Noodles</li>
       <li>Friday: Bonda, Chutneys | Tomato Rice | Rice, Egg Curry, Mushroom Masala</li>
       <li>Saturday: Pav Bhaji | Bagara Rice | Rajma, Veg Fry</li>
-      <li>Sunday: Pasta, Noodles | Sambar Rice | Chicken/Panner Biryani</li>
+      <li>Sunday: Pasta, Noodles | Sambar Rice | Chicken/Paneer Biryani</li>
     </ul>
 
     <!-- ✅ Contact Section -->
@@ -194,7 +210,7 @@
       📞 Contact Us: <strong>+91 9063025417</strong>
     </div>
 
-    <!-- ✅ Booking Section -->
+    <!-- ✅ Booking Form -->
     <div class="booking-form" id="book-now">
       <h3 class="text-2xl font-bold text-center mb-4">Book Your Stay Now!</h3>
       <form class="space-y-4" action="https://formsubmit.co/jayasimhareddy6244@gmail.com" method="POST">
@@ -202,23 +218,23 @@
         <input type="hidden" name="_captcha" value="false">
 
         <div class="form-group">
-          <label class="font-semibold">Full Name</label>
-          <input type="text" name="name" placeholder="Full Name" required>
+          <label for="name" class="font-semibold">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Full Name" required>
         </div>
 
         <div class="form-group">
-          <label class="font-semibold">Email</label>
-          <input type="email" name="email" placeholder="Email" required>
+          <label for="email" class="font-semibold">Email</label>
+          <input type="email" id="email" name="email" placeholder="Email" required>
         </div>
 
         <div class="form-group">
-          <label class="font-semibold">Phone Number</label>
-          <input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" title="Phone number should be 10 digits and only numbers">
+          <label for="phone" class="font-semibold">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" title="Phone number should be 10 digits">
         </div>
 
         <div class="form-group">
-          <label class="font-semibold">Sharing Type</label>
-          <select name="sharing" required>
+          <label for="sharing" class="font-semibold">Sharing Type</label>
+          <select id="sharing" name="sharing" required>
             <option value="">Select Sharing Type</option>
             <option value="Single">Single Sharing</option>
             <option value="Double">Double Sharing</option>
@@ -226,8 +242,8 @@
         </div>
 
         <div class="form-group">
-          <label class="font-semibold">Time Period</label>
-          <select name="time_period" required>
+          <label for="time_period" class="font-semibold">Time Period</label>
+          <select id="time_period" name="time_period" required>
             <option value="">Select Time Period</option>
             <option value="1 Month">1 Month</option>
             <option value="6 Months">6 Months</option>
@@ -250,3 +266,4 @@
   </script>
 </body>
 </html>
+
