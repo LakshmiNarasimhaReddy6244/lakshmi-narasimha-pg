@@ -62,7 +62,7 @@
     <p class="text-center text-lg text-gray-700 mb-4">🏡 Live easy, live cozy — PG living redefined 🏡</p>
     <p class="text-center text-gray-600 mb-8">Experience the comfort and warmth of home at <span class="font-semibold text-blue-600">BLESS PG</span>, where we prioritize your well-being and convenience.</p>
 
-    <!-- ✅ Facilities Section -->
+    <!-- ✅ Facilities -->
     <section id="why-choose" class="mt-8">
       <h3 class="text-2xl font-semibold mb-3 text-gray-800">🏠 Why Choose Us?</h3>
       <ul class="grid grid-cols-2 gap-2 text-sm md:text-base text-gray-700 ml-5">
@@ -85,7 +85,7 @@
     <section id="accommodation-options" class="mt-10">
       <h3 class="text-2xl font-semibold text-gray-800 mb-3">💰 Accommodation Options</h3>
 
-      <!-- Single Sharing -->
+      <!-- Single -->
       <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-6 shadow-lg mb-4">
         <p class="font-semibold text-purple-800 text-lg">🔹 Single Sharing</p>
         <ul class="ml-6 text-gray-700 text-sm mt-2">
@@ -95,7 +95,7 @@
         </ul>
       </div>
 
-      <!-- 2-Sharing -->
+      <!-- Double -->
       <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-6 shadow-lg mb-4">
         <p class="font-semibold text-blue-800 text-lg">🔹 2-Sharing</p>
         <ul class="ml-6 text-gray-700 text-sm mt-2">
@@ -115,8 +115,7 @@
         <p>Refundable deposit of ₹5000/- at the time of booking.</p>
       </div>
     </section>
-
-    <!-- ✅ Weekly Meal Plan -->
+     <!-- ✅ Weekly Meal Plan -->
     <section id="meal-plan" class="mt-10">
       <h3 class="text-3xl font-bold text-center mb-6 text-gray-800">🍽 Weekly Meal Plan</h3>
       
@@ -177,77 +176,65 @@
         </table>
       </div>
     </section>
-
     <!-- ✅ Contact Section -->
-    <section id="contact" class="mt-10">
-      <div class="bg-green-100 border border-green-400 p-6 rounded-2xl text-center shadow-lg max-w-md mx-auto">
-        <h3 class="text-2xl font-bold text-green-800 mb-4">📞 Contact Us</h3>
-        <p class="text-gray-700 mb-4">Reach out to us anytime for queries or bookings!</p>
-        <div class="flex flex-col md:flex-row justify-center gap-4">
-          <a href="tel:+919063025417"
-             class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-md hover:bg-green-600 transition-colors font-semibold flex items-center justify-center gap-2">
-            📱 +91 9063025417
-          </a>
-          <a href="tel:+918885483749"
-             class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-md hover:bg-green-600 transition-colors font-semibold flex items-center justify-center gap-2">
-            📱 +91 8885483749
-          </a>
-        </div>
+<section id="contact" class="mt-10">
+  <div class="bg-green-100 border border-green-400 p-6 rounded-2xl text-center shadow-lg max-w-md mx-auto">
+    <h3 class="text-2xl font-bold text-green-800 mb-4">📞 Contact Us</h3>
+    <p class="text-gray-700 mb-4">Reach out to us anytime for queries or bookings!</p>
+
+    <div class="flex flex-col md:flex-row justify-center gap-4 mb-4">
+      <a href="tel:+919063025417"
+         class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-md hover:bg-green-600 transition-colors font-semibold flex items-center justify-center gap-2">
+        📱 +91 9063025417
+      </a>
+      <a href="tel:+918885483749"
+         class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-md hover:bg-green-600 transition-colors font-semibold flex items-center justify-center gap-2">
+        📱 +91 8885483749
+      </a>
+    </div>
+
+    <div class="flex flex-col items-center gap-3">
+      <!-- Gmail link opens Gmail compose directly -->
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=blesspg6244@gmail.com"
+         target="_blank"
+         class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-md hover:bg-green-600 transition-colors font-semibold flex items-center justify-center gap-2">
+        ✉️ blesspg6244@gmail.com
+      </a>
+
+      <div class="bg-white border border-green-300 rounded-xl px-5 py-3 shadow-sm text-gray-800 text-sm leading-relaxed max-w-sm">
+        📍 <strong>Location:</strong> Bless PG, Amity University Rd, near Bhatan High School, Panvel, Bhatan, Maharashtra 410221
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
+
 
     <!-- ✅ Booking Form -->
     <section id="book-now" class="mt-10">
       <h3 class="text-3xl font-bold text-center mb-6 text-gray-800">Book Your Stay Now!</h3>
-      <form class="space-y-5 bg-white/90 backdrop-blur-lg p-6 rounded-2xl shadow-xl border border-gray-200"
-        action="https://formsubmit.co/jayasimhareddy6244@gmail.com" method="POST">
-
-        <input type="hidden" name="_subject" value="New PG Booking Request - BLESS PG">
-        <input type="hidden" name="_captcha" value="false">
-
+      <form id="bookingForm" class="space-y-5 bg-white/90 p-6 rounded-2xl shadow-xl border border-gray-200">
         <div>
-          <label for="name" class="block font-semibold mb-1">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Your Full Name"
+          <label class="block font-semibold mb-1">Full Name</label>
+          <input type="text" id="bname" placeholder="Your Full Name"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
         </div>
-
         <div>
-          <label for="email" class="block font-semibold mb-1">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com"
+          <label class="block font-semibold mb-1">Contact Number</label>
+          <input type="tel" id="bphone" placeholder="10-digit mobile number" pattern="[0-9]{10}"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
         </div>
-
         <div>
-          <label for="phone" class="block font-semibold mb-1">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number"
-            pattern="[0-9]{10}" title="Phone number should be 10 digits"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
-        </div>
-
-        <div>
-          <label for="sharing" class="block font-semibold mb-1">Sharing Type</label>
-          <select id="sharing" name="sharing"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
+          <label class="block font-semibold mb-1">Sharing Type</label>
+          <select id="bsharing" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
             <option value="">Select Sharing Type</option>
             <option value="Single">Single Sharing</option>
-            <option value="Double">Double Sharing</option>
+            <option value="2-Sharing">2-Sharing</option>
           </select>
         </div>
-
-        <div>
-          <label for="time_period" class="block font-semibold mb-1">Time Period</label>
-          <select id="time_period" name="time_period"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
-            <option value="">Select Time Period</option>
-            <option value="1 Month">1 Month</option>
-            <option value="6 Months">6 Months</option>
-            <option value="1 Year">1 Year</option>
-          </select>
-        </div>
-
-        <button type="submit"
+        <button type="button" id="bookingPay"
           class="w-full py-3 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform">
-          ✨ Book Now
+          💳 Pay ₹5000 Booking Fee
         </button>
       </form>
     </section>
@@ -255,9 +242,8 @@
     <!-- ✅ Payment Desk -->
     <section id="payment-desk" class="mt-10">
       <h3 class="text-3xl font-bold text-center mb-6 text-gray-800">💳 Payment Desk</h3>
-      <p class="text-center text-gray-600 mb-6">Pay your monthly rent here. Late fee: ₹100/day after due date.</p>
+      <p class="text-center text-gray-600 mb-6">Pay your monthly rent here. Grace period: 5 days. After that ₹100/day late fee.</p>
 
-      <!-- Step 1: Pay Button -->
       <div class="text-center mb-6">
         <button id="pay-btn"
           class="bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-red-600 transition-colors font-bold">
@@ -265,16 +251,14 @@
         </button>
       </div>
 
-      <!-- Step 2: Tenant Contact Form -->
-      <div id="tenant-form-container" class="hidden max-w-md mx-auto bg-white/90 backdrop-blur-lg p-6 rounded-2xl shadow-lg">
+      <div id="tenant-form-container" class="hidden max-w-md mx-auto bg-white/90 p-6 rounded-2xl shadow-lg">
         <label class="block font-semibold mb-2">Enter Contact Number</label>
         <input type="tel" id="tenant-contact" placeholder="10-digit mobile number"
-          pattern="[0-9]{10}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
         <button id="tenant-submit" class="mt-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-semibold">Submit</button>
       </div>
 
-      <!-- Step 3: Tenant Details & Payment -->
-      <div id="tenant-details" class="hidden max-w-md mx-auto mt-6 bg-white/90 backdrop-blur-lg p-6 rounded-2xl shadow-lg text-center">
+      <div id="tenant-details" class="hidden max-w-md mx-auto mt-6 bg-white/90 p-6 rounded-2xl shadow-lg text-center">
         <h4 class="text-xl font-bold mb-3 text-gray-800">Tenant Details</h4>
         <p id="tenant-name" class="mb-2"></p>
         <p id="tenant-room" class="mb-2"></p>
@@ -285,26 +269,52 @@
         </button>
       </div>
     </section>
+
   </div>
 
-  <!-- 🧠 Scripts -->
+  <!-- ✅ Scripts -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
-    // Navbar mobile toggle
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('mobile-menu');
-    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+    // Navbar Toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
 
-    // Payment Desk Logic
+    // Dummy Tenant Data
     const tenants = [
       { contact: "9063025417", name: "Ramesh Kumar", room: "Single", joinDate: "2025-09-01" },
-      { contact: "8885483749", name: "Sita Sharma", room: "2-Sharing", joinDate: "2025-09-05" },
-      { contact: "9876543210", name: "Rahul Verma", room: "Single", joinDate: "2025-09-10" }
+      { contact: "8885483749", name: "Sita Sharma", room: "2-Sharing", joinDate: "2025-09-05" }
     ];
+
     const prices = { "Single": 14999, "2-Sharing": 8999 };
     const lateFeePerDay = 100;
-    const today = new Date();
 
+    // Booking Payment
+    document.getElementById("bookingPay").onclick = function() {
+      const name = document.getElementById("bname").value;
+      const phone = document.getElementById("bphone").value;
+      const sharing = document.getElementById("bsharing").value;
+
+      if(!name || !phone || !sharing) {
+        alert("Please fill all details!");
+        return;
+      }
+
+      const options = {
+        key: "YOUR_RAZORPAY_KEY",
+        amount: 5000 * 100,
+        currency: "INR",
+        name: "BLESS PG Booking",
+        description: "Advance Booking Payment",
+        handler: function (response) {
+          alert(`Booking Successful! \nPayment ID: ${response.razorpay_payment_id}\nNow you can enter your Check-in date.`);
+        }
+      };
+      const rzp = new Razorpay(options);
+      rzp.open();
+    };
+
+    // Monthly Rent Payment
     document.getElementById("pay-btn").addEventListener("click", () => {
       document.getElementById("tenant-form-container").classList.remove("hidden");
     });
@@ -314,8 +324,9 @@
       const tenant = tenants.find(t => t.contact === contact);
       if(!tenant){ alert("Tenant not found!"); return; }
 
+      const today = new Date();
       const joinDate = new Date(tenant.joinDate);
-      const dueDate = new Date(joinDate.getFullYear(), joinDate.getMonth() + 1, joinDate.getDate());
+      const dueDate = new Date(joinDate.getTime() + (30 + 5) * 24 * 60 * 60 * 1000);
       let lateFee = 0;
       if(today > dueDate){
         const diffDays = Math.floor((today - dueDate)/(1000*60*60*24));
@@ -326,15 +337,15 @@
 
       document.getElementById("tenant-name").textContent = `Name: ${tenant.name}`;
       document.getElementById("tenant-room").textContent = `Room Type: ${tenant.room}`;
-      document.getElementById("tenant-latefee").textContent = `Late Fee: ₹${lateFee.toLocaleString()}`;
+      document.getElementById("tenant-latefee").textContent = `Late Fee: ₹${lateFee}`;
       document.getElementById("tenant-details").classList.remove("hidden");
 
       document.getElementById("razorpay-pay").onclick = () => {
         const options = {
-          key: "rzp_test_RRjkWWFPscy3b1", 
-          amount: total * 100, 
+          key: "YOUR_RAZORPAY_KEY",
+          amount: total * 100,
           currency: "INR",
-          name: "BLESS PG",
+          name: "BLESS PG Rent",
           description: "Monthly Rent Payment",
           handler: function(response){
             const receipt = `
@@ -343,9 +354,9 @@
 Student Name: ${tenant.name}
 Room Type: ${tenant.room}
 Join Date: ${tenant.joinDate}
-Rent Amount: ₹${amount.toLocaleString()}
-Late Fee: ₹${lateFee.toLocaleString()}
-Total Paid: ₹${total.toLocaleString()}
+Rent Amount: ₹${amount}
+Late Fee: ₹${lateFee}
+Total Paid: ₹${total}
 Payment ID: ${response.razorpay_payment_id}
 Date: ${new Date().toLocaleDateString()}
 ------------------------------
@@ -362,4 +373,5 @@ Thank you for your payment!
 
 </body>
 </html>
+
 
