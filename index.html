@@ -5,234 +5,239 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BLESS PG Booking</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      color: #1f2937;
+    }
     html {
       scroll-behavior: smooth;
-    }
-    body {
-      background: white;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: black;
-      font-family: 'Nobile', sans-serif;
-    }
-    .container {
-      background: white;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      padding: 2rem;
-      border-radius: 15px;
-      width: 100%;
-      max-width: 800px;
-      border: 1px solid rgba(0, 0, 0, 0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .highlight {
-      background: #fef3c7;
-      color: #b91c1c;
-      font-size: 1.2rem;
-      font-weight: bold;
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      margin-top: 1rem;
-      border: 1px solid #facc15;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    .referral-bonus {
-      background: #f0f8ff;
-      color: #0000ff;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-top: 1rem;
-      width: 100%;
-      text-align: center;
-      font-weight: bold;
-    }
-    .booking-form {
-      background: #8b8e8be0;
-      padding: 2rem;
-      border-radius: 15px;
-      width: 100%;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      margin-top: 1rem;
-    }
-    input, select, button {
-      transition: all 0.3s ease;
-    }
-    input, select {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(0, 0, 0, 0.4);
-      color: black;
-      padding: 10px;
-      width: 100%;
-      border-radius: 8px;
-      margin-top: 0.5rem;
-    }
-    button {
-      background: linear-gradient(90deg, #facc15, #f97316);
-      color: black;
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: bold;
-      width: 100%;
-      margin-top: 1rem;
-    }
-    button:hover {
-      transform: scale(1.05);
-      background: linear-gradient(90deg, #f97316, #ef4444);
-    }
-    .contact-us {
-      background: #05c11e;
-      color: #d32f2f;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-top: 1rem;
-      width: 100%;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-    h2, h3 {
-      margin-top: 1rem;
-    }
-    ul {
-      list-style-type: disc;
-      margin-left: 1.5rem;
-    }
-    .form-group {
-      margin-top: 1rem;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
     }
   </style>
 </head>
 
-<body class="relative">
+<body class="relative min-h-screen flex flex-col items-center justify-center">
 
-  <!-- 🧭 Hamburger Menu Icon -->
-  <div class="absolute top-4 left-4 z-50">
-    <button id="menu-toggle" class="focus:outline-none">
-      <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" stroke-width="2"
-        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
-  </div>
+  <!-- 🌐 Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-blue-700">BLESS PG</h1>
+      <button id="menu-toggle" class="md:hidden">
+        <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <ul id="menu" class="hidden md:flex space-x-8 font-semibold text-gray-700">
+        <li><a href="#" class="hover:text-blue-600">Home</a></li>
+        <li><a href="#accommodation-options" class="hover:text-blue-600">Pricing</a></li>
+        <li><a href="#why-choose" class="hover:text-blue-600">Facilities</a></li>
+        <li><a href="#meal-plan" class="hover:text-blue-600">Meal Plan</a></li>
+        <li><a href="#book-now" class="hover:text-blue-600">Book</a></li>
+        <li><a href="#payment-desk" class="hover:text-blue-600">Payment Desk</a></li>
+        <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+      </ul>
+    </div>
 
-  <!-- 🧭 Dropdown Menu -->
-  <div id="menu" class="absolute top-16 left-4 bg-white shadow-lg rounded-lg p-4 hidden z-50 border border-gray-300">
-    <ul class="space-y-2">
-      <li><a href="#" class="text-gray-800 hover:text-blue-600 font-medium">Home</a></li>
-      <li><a href="#accommodation-options" class="text-gray-800 hover:text-blue-600 font-medium">Pricing</a></li>
-      <li><a href="#why-choose" class="text-gray-800 hover:text-blue-600 font-medium">Facilities</a></li>
-      <li><a href="#meal-plan" class="text-gray-800 hover:text-blue-600 font-medium">Weekly Meal Plan</a></li>
-      <li><a href="#book-now" class="text-gray-800 hover:text-blue-600 font-medium">Book Now</a></li>
-      <li><a href="#contact" class="text-gray-800 hover:text-blue-600 font-medium">Contact</a></li>
-    </ul>
-  </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md shadow-inner">
+      <ul class="flex flex-col items-center py-4 space-y-3 font-semibold">
+        <li><a href="#" class="hover:text-blue-600">Home</a></li>
+        <li><a href="#accommodation-options" class="hover:text-blue-600">Pricing</a></li>
+        <li><a href="#why-choose" class="hover:text-blue-600">Facilities</a></li>
+        <li><a href="#meal-plan" class="hover:text-blue-600">Meal Plan</a></li>
+        <li><a href="#book-now" class="hover:text-blue-600">Book Now</a></li>
+        <li><a href="#payment-desk" class="hover:text-blue-600">Payment Desk</a></li>
+        <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <div class="container">
-    <h2 class="text-3xl font-bold text-center mb-6">BLESS PG Booking</h2>
-    <p class="text-center text-lg font-semibold mb-4">🏡 Live easy, live cozy — PG living redefined 🏡</p>
-    <p class="text-center text-md mb-4">Experience the comfort and warmth of home at <span class="font-bold text-blue-600">BLESS PG</span>, where we prioritize your well-being and convenience.</p>
+  <!-- 🏠 Main Container -->
+  <div class="container mx-auto mt-28 mb-10 bg-white/70 backdrop-blur-lg rounded-2xl shadow-2xl p-8 max-w-5xl">
+
+    <h2 class="text-4xl font-bold text-center text-blue-700 mb-4">BLESS PG Booking</h2>
+    <p class="text-center text-lg text-gray-700 mb-4">🏡 Live easy, live cozy — PG living redefined 🏡</p>
+    <p class="text-center text-gray-600 mb-8">Experience the comfort and warmth of home at <span class="font-semibold text-blue-600">BLESS PG</span>, where we prioritize your well-being and convenience.</p>
 
     <!-- ✅ Facilities Section -->
-    <h3 class="text-xl font-bold mt-4" id="why-choose">🏠 Why Choose Us?</h3>
-    <ul class="text-sm">
-      <li>📍 Prime Location: Situated near Amity University Mumbai.</li>
-      <li>🍽 Daily Fresh Meals: Nutritious meals prepared daily.</li>
-      <li>🔌 Power Backup</li>
-      <li>🛏 Fully Furnished Rooms (including study table, cot, and wardrobe)</li>
-      <li>📶 High-Speed Wi-Fi</li>
-      <li>💪 GYM and Indoor Games</li>
-      <li>🔥 24/7 Hot Water</li>
-      <li>🚰 Purified Drinking Water</li>
-      <li>📹 CCTV Surveillance</li>
-      <li>🧺 Washing Machine</li>
-      <li>🧊 Refrigerator</li>
-      <li>🚗 Parking for 2/4 Wheelers</li>
-     <li>📺 Smart TV Lounge</li>
-
-    </ul>
-
+    <section id="why-choose" class="mt-8">
+      <h3 class="text-2xl font-semibold mb-3 text-gray-800">🏠 Why Choose Us?</h3>
+      <ul class="grid grid-cols-2 gap-2 text-sm md:text-base text-gray-700 ml-5">
+        <li>📍 Prime Location: Near Amity University Mumbai</li>
+        <li>🍽 Fresh Daily Meals</li>
+        <li>🛏 Fully Furnished Rooms</li>
+        <li>📶 High-Speed Wi-Fi</li>
+        <li>💪 Gym & Indoor Games</li>
+        <li>🔥 24/7 Hot Water</li>
+        <li>🚰 Purified Drinking Water</li>
+        <li>📹 CCTV Surveillance</li>
+        <li>🧺 Washing Machine</li>
+        <li>🧊 Refrigerator</li>
+        <li>🚗 Parking for 2/4 Wheelers</li>
+        <li>📺 Smart TV Lounge</li>
+      </ul>
+    </section>
 
     <!-- ✅ Pricing Section -->
-    <h3 class="text-xl font-bold mt-4" id="accommodation-options">🏠 Accommodation Options</h3>
-    <div class="text-sm ml-5">
-      <p class="mt-2 font-semibold text-blue-800">🔹 2-Sharing</p>
-      <ul class="list-disc ml-5">
-        <li>💰 ₹8,999/month</li>
-        <li>₹50,999/semester</li>
-        <li>₹95,999/year</li>
-        <li>(Including Food)</li>
-      </ul>
+    <section id="accommodation-options" class="mt-10">
+      <h3 class="text-2xl font-semibold text-gray-800 mb-3">💰 Accommodation Options</h3>
 
-    <div class="highlight">
-      🏷️ Stay starting from <span class="text-xl text-green-700 font-bold">₹7,999/-</span> per month 🎉
-      <p class="mt-2 text-black text-sm font-normal">By paying the total yearly amount at once.</p>
-    </div>
+      <!-- Single Sharing -->
+      <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-6 shadow-lg mb-4">
+        <p class="font-semibold text-purple-800 text-lg">🔹 Single Sharing</p>
+        <ul class="ml-6 text-gray-700 text-sm mt-2">
+          <li>💰 ₹14,999/month</li>
+          <li>₹86,999/semester</li>
+          <li>₹1,67,999/year (Including Food)</li>
+        </ul>
+      </div>
 
-    <h3 class="text-xl font-bold mt-4">🛡 Security Deposit</h3>
-    <p class="text-sm">A refundable security deposit of ₹5000/- is required at the time of booking.</p>
+      <!-- 2-Sharing -->
+      <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-6 shadow-lg mb-4">
+        <p class="font-semibold text-blue-800 text-lg">🔹 2-Sharing</p>
+        <ul class="ml-6 text-gray-700 text-sm mt-2">
+          <li>💰 ₹8,999/month</li>
+          <li>₹50,999/semester</li>
+          <li>₹95,999/year (Including Food)</li>
+        </ul>
+      </div>
 
-    <!-- ✅ Weekly Meal Plan Section -->
-    <h3 class="text-xl font-bold mt-4" id="meal-plan">🍽 Weekly Meal Plan</h3>
-    <ul class="list-disc ml-5 text-sm">
-      <li>Monday: Poha & Lemon Rice | Tomato Rice | Rice, Dal, Roti</li>
-      <li>Tuesday: Idli, Chutney, Sambar | Rice, Roti, Veg Fry | Vaangibaath</li>
-      <li>Wednesday: Poori, Khichdi | Rice + Chicken/Paneer | Chole Bhature</li>
-      <li>Thursday: Dosa, Chutney | Veg Biryani | Fried Rice, Noodles</li>
-      <li>Friday: Bonda, Chutneys | Tomato Rice | Rice, Egg Curry, Mushroom Masala</li>
-      <li>Saturday: Pav Bhaji | Bagara Rice | Rajma, Veg Fry</li>
-      <li>Sunday: Pasta, Noodles | Sambar Rice | Chicken/Paneer Biryani</li>
-    </ul>
+      <div class="mt-4 bg-yellow-100 border border-yellow-400 p-4 rounded-lg shadow-md">
+        <p class="font-bold text-yellow-700 text-lg">🏷️ Special Offer: ₹7,999/month</p>
+        <p class="text-sm text-gray-700">When you pay the yearly amount in one go 🎉</p>
+      </div>
+
+      <div class="mt-4 text-sm text-gray-700">
+        <h4 class="font-semibold text-gray-800">🛡 Security Deposit:</h4>
+        <p>Refundable deposit of ₹5000/- at the time of booking.</p>
+      </div>
+    </section>
+
+    <!-- ✅ Weekly Meal Plan -->
+    <section id="meal-plan" class="mt-10">
+      <h3 class="text-3xl font-bold text-center mb-6 text-gray-800">🍽 Weekly Meal Plan</h3>
+      
+      <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-300 rounded-lg overflow-hidden shadow-lg text-center">
+          <thead class="bg-gradient-to-r from-orange-400 to-yellow-300 text-gray-800">
+            <tr>
+              <th class="py-3 px-4 text-lg">Day</th>
+              <th class="py-3 px-4 text-lg">🥐 Breakfast</th>
+              <th class="py-3 px-4 text-lg">🍛 Lunch</th>
+              <th class="py-3 px-4 text-lg">🌙 Dinner</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr class="hover:bg-orange-50">
+              <td class="py-3 font-semibold">Monday</td>
+              <td>Poha/Lemon Rice</td>
+              <td>Rice, Dal, Roti, Lady'sfinger Fry</td>
+              <td>Rice, Roti, Dal, Matki</td>
+            </tr>
+            <tr class="hover:bg-orange-50">
+              <td class="py-3 font-semibold">Tuesday</td>
+              <td>Paratha</td>
+              <td>Lemon Rice, Roti, Dal, Potato fry </td>
+              <td>Roti, Rice, Dal, Brinjal Curry</td>
+            </tr>
+            <tr class="hover:bg-orange-50">
+              <td class="py-3 font-semibold">Wednesday</td>
+              <td>Pasta/Noodles</td>
+              <td>Rice, Roti, Dal, Cabbage/CauliFlower</td>
+              <td>Rice, Roti, Egg curry/Paneer Curry</td>
+            </tr>
+            <tr class="hover:bg-orange-50">
+              <td class="py-3 font-semibold">Thursday</td>
+              <td>Dosa/Bonda</td>
+              <td>Roti, Rice, Dal, Soyabean</td>
+              <td>Rice, Roti, Dal, Chana masala</td>
+            </tr>
+            <tr class="hover:bg-orange-50">
+              <td class="py-3 font-semibold">Friday</td>
+              <td>Upma/sameya</td>
+              <td>Jeera Rice, Roti, Dal, Veg fry </td>
+              <td>Fried Rice, Noodles</td>
+            </tr>
+            <tr class="hover:bg-orange-50">
+              <td class="py-3 font-semibold">Saturday</td>
+              <td>Poori/Medu Vadas</td>
+              <td>Rice, Roti, Dal, Louki Chana Masala</td>
+              <td>Rice, Roti, Rajma Masala</td>
+            </tr>
+            <tr class="hover:bg-orange-50">
+              <td class="py-3 font-semibold">Sunday</td>
+              <td>Idli, Sambar, Chutney</td>
+              <td>Sambar, Rice, Chutney</td>
+              <td>Chicken/Paneer Biryani</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
     <!-- ✅ Contact Section -->
-    <div class="contact-us" id="contact">
-      📞 Contact Us: <strong>+91 9063025417</strong>
-    </div>
+    <section id="contact" class="mt-10">
+      <div class="bg-green-100 border border-green-400 p-6 rounded-2xl text-center shadow-lg max-w-md mx-auto">
+        <h3 class="text-2xl font-bold text-green-800 mb-4">📞 Contact Us</h3>
+        <p class="text-gray-700 mb-4">Reach out to us anytime for queries or bookings!</p>
+        <div class="flex flex-col md:flex-row justify-center gap-4">
+          <a href="tel:+919063025417"
+             class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-md hover:bg-green-600 transition-colors font-semibold flex items-center justify-center gap-2">
+            📱 +91 9063025417
+          </a>
+          <a href="tel:+918885483749"
+             class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-md hover:bg-green-600 transition-colors font-semibold flex items-center justify-center gap-2">
+            📱 +91 8885483749
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- ✅ Booking Form -->
-    <div class="booking-form" id="book-now">
-      <h3 class="text-2xl font-bold text-center mb-4">Book Your Stay Now!</h3>
-      <form class="space-y-4" action="https://formsubmit.co/jayasimhareddy6244@gmail.com" method="POST">
+    <section id="book-now" class="mt-10">
+      <h3 class="text-3xl font-bold text-center mb-6 text-gray-800">Book Your Stay Now!</h3>
+      <form class="space-y-5 bg-white/90 backdrop-blur-lg p-6 rounded-2xl shadow-xl border border-gray-200"
+        action="https://formsubmit.co/jayasimhareddy6244@gmail.com" method="POST">
+
         <input type="hidden" name="_subject" value="New PG Booking Request - BLESS PG">
         <input type="hidden" name="_captcha" value="false">
 
-        <div class="form-group">
-          <label for="name" class="font-semibold">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Full Name" required>
+        <div>
+          <label for="name" class="block font-semibold mb-1">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Full Name"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
         </div>
 
-        <div class="form-group">
-          <label for="email" class="font-semibold">Email</label>
-          <input type="email" id="email" name="email" placeholder="Email" required>
+        <div>
+          <label for="email" class="block font-semibold mb-1">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
         </div>
 
-        <div class="form-group">
-          <label for="phone" class="font-semibold">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" title="Phone number should be 10 digits">
+        <div>
+          <label for="phone" class="block font-semibold mb-1">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number"
+            pattern="[0-9]{10}" title="Phone number should be 10 digits"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
         </div>
 
-        <div class="form-group">
-          <label for="sharing" class="font-semibold">Sharing Type</label>
-          <select id="sharing" name="sharing" required>
+        <div>
+          <label for="sharing" class="block font-semibold mb-1">Sharing Type</label>
+          <select id="sharing" name="sharing"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
             <option value="">Select Sharing Type</option>
             <option value="Single">Single Sharing</option>
             <option value="Double">Double Sharing</option>
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="time_period" class="font-semibold">Time Period</label>
-          <select id="time_period" name="time_period" required>
+        <div>
+          <label for="time_period" class="block font-semibold mb-1">Time Period</label>
+          <select id="time_period" name="time_period"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
             <option value="">Select Time Period</option>
             <option value="1 Month">1 Month</option>
             <option value="6 Months">6 Months</option>
@@ -240,19 +245,121 @@
           </select>
         </div>
 
-        <button type="submit">Book Now</button>
+        <button type="submit"
+          class="w-full py-3 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform">
+          ✨ Book Now
+        </button>
       </form>
-    </div>
+    </section>
+
+    <!-- ✅ Payment Desk -->
+    <section id="payment-desk" class="mt-10">
+      <h3 class="text-3xl font-bold text-center mb-6 text-gray-800">💳 Payment Desk</h3>
+      <p class="text-center text-gray-600 mb-6">Pay your monthly rent here. Late fee: ₹100/day after due date.</p>
+
+      <!-- Step 1: Pay Button -->
+      <div class="text-center mb-6">
+        <button id="pay-btn"
+          class="bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-red-600 transition-colors font-bold">
+          💰 Pay Monthly Rent
+        </button>
+      </div>
+
+      <!-- Step 2: Tenant Contact Form -->
+      <div id="tenant-form-container" class="hidden max-w-md mx-auto bg-white/90 backdrop-blur-lg p-6 rounded-2xl shadow-lg">
+        <label class="block font-semibold mb-2">Enter Contact Number</label>
+        <input type="tel" id="tenant-contact" placeholder="10-digit mobile number"
+          pattern="[0-9]{10}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
+        <button id="tenant-submit" class="mt-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-semibold">Submit</button>
+      </div>
+
+      <!-- Step 3: Tenant Details & Payment -->
+      <div id="tenant-details" class="hidden max-w-md mx-auto mt-6 bg-white/90 backdrop-blur-lg p-6 rounded-2xl shadow-lg text-center">
+        <h4 class="text-xl font-bold mb-3 text-gray-800">Tenant Details</h4>
+        <p id="tenant-name" class="mb-2"></p>
+        <p id="tenant-room" class="mb-2"></p>
+        <p id="tenant-latefee" class="mb-4 text-red-600 font-semibold"></p>
+        <button id="razorpay-pay"
+          class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-green-600 transition-colors font-bold">
+          Pay Now
+        </button>
+      </div>
+    </section>
   </div>
 
-  <!-- 🧠 Toggle Script -->
+  <!-- 🧠 Scripts -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
+    // Navbar mobile toggle
     const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
+    const menu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    // Payment Desk Logic
+    const tenants = [
+      { contact: "9063025417", name: "Ramesh Kumar", room: "Single", joinDate: "2025-09-01" },
+      { contact: "8885483749", name: "Sita Sharma", room: "2-Sharing", joinDate: "2025-09-05" },
+      { contact: "9876543210", name: "Rahul Verma", room: "Single", joinDate: "2025-09-10" }
+    ];
+    const prices = { "Single": 14999, "2-Sharing": 8999 };
+    const lateFeePerDay = 100;
+    const today = new Date();
+
+    document.getElementById("pay-btn").addEventListener("click", () => {
+      document.getElementById("tenant-form-container").classList.remove("hidden");
+    });
+
+    document.getElementById("tenant-submit").addEventListener("click", () => {
+      const contact = document.getElementById("tenant-contact").value;
+      const tenant = tenants.find(t => t.contact === contact);
+      if(!tenant){ alert("Tenant not found!"); return; }
+
+      const joinDate = new Date(tenant.joinDate);
+      const dueDate = new Date(joinDate.getFullYear(), joinDate.getMonth() + 1, joinDate.getDate());
+      let lateFee = 0;
+      if(today > dueDate){
+        const diffDays = Math.floor((today - dueDate)/(1000*60*60*24));
+        lateFee = diffDays * lateFeePerDay;
+      }
+      const amount = prices[tenant.room];
+      const total = amount + lateFee;
+
+      document.getElementById("tenant-name").textContent = `Name: ${tenant.name}`;
+      document.getElementById("tenant-room").textContent = `Room Type: ${tenant.room}`;
+      document.getElementById("tenant-latefee").textContent = `Late Fee: ₹${lateFee.toLocaleString()}`;
+      document.getElementById("tenant-details").classList.remove("hidden");
+
+      document.getElementById("razorpay-pay").onclick = () => {
+        const options = {
+          key: "rzp_test_RRjkWWFPscy3b1", 
+          amount: total * 100, 
+          currency: "INR",
+          name: "BLESS PG",
+          description: "Monthly Rent Payment",
+          handler: function(response){
+            const receipt = `
+🎉 Payment Receipt 🎉
+------------------------------
+Student Name: ${tenant.name}
+Room Type: ${tenant.room}
+Join Date: ${tenant.joinDate}
+Rent Amount: ₹${amount.toLocaleString()}
+Late Fee: ₹${lateFee.toLocaleString()}
+Total Paid: ₹${total.toLocaleString()}
+Payment ID: ${response.razorpay_payment_id}
+Date: ${new Date().toLocaleDateString()}
+------------------------------
+Thank you for your payment!
+            `;
+            alert(receipt);
+          }
+        };
+        const rzp = new Razorpay(options);
+        rzp.open();
+      };
     });
   </script>
+
 </body>
 </html>
 
