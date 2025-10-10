@@ -282,8 +282,8 @@
 
     // Dummy Tenant Data
     const tenants = [
-      { contact: "9063025417", name: "Ramesh Kumar", room: "Single", joinDate: "2025-09-01" },
-      { contact: "8885483749", name: "Sita Sharma", room: "2-Sharing", joinDate: "2025-09-05" }
+      { contact: "9063025417", name: "Jaisu", room: "Single", joinDate: "2025-09-01" },
+      { contact: "8885483749", name: "Reddy", room: "2-Sharing", joinDate: "2025-09-05" }
     ];
 
     const prices = { "Single": 14999, "2-Sharing": 8999 };
@@ -301,7 +301,7 @@
       }
 
       const options = {
-        key: "YOUR_RAZORPAY_KEY",
+        key: "rzp_test_RRjkWWFPscy3b1",
         amount: 5000 * 100,
         currency: "INR",
         name: "BLESS PG Booking",
@@ -342,7 +342,7 @@
 
       document.getElementById("razorpay-pay").onclick = () => {
         const options = {
-          key: "YOUR_RAZORPAY_KEY",
+          key: "rzp_test_RRjkWWFPscy3b1",
           amount: total * 100,
           currency: "INR",
           name: "BLESS PG Rent",
@@ -373,5 +373,6 @@ Thank you for your payment!
 
 </body>
 </html>
+
 
 
