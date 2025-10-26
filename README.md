@@ -1,54 +1,80 @@
-👇
+# 🏡 LAKSHMI NARASIMHA PG Booking Website
 
-🏡 BLESS PG Booking Website
+A modern, fully responsive **PG (Paying Guest) booking webpage** built using **HTML**, **Tailwind CSS**, **JavaScript**, and integrated **Payment Gateway** for secure online transactions.  
+This project provides a clean, user-friendly interface to showcase PG facilities, pricing, meal plans, and an integrated booking and payment system — allowing users to complete the entire process online.
 
-A modern, responsive, and user-friendly web application for managing PG (Paying Guest) bookings, payments, and facilities — designed using HTML, Tailwind CSS, and JavaScript with Razorpay integration for secure online payments.
+---
 
-🚀 Features
-🌐 General
+## 🧭 Project Overview
 
-Responsive design built with Tailwind CSS.
+The **LAKSHMI NARASIMHA PG Booking Website** aims to simplify the process of **finding, reserving, and paying for PG accommodations online**.  
+It eliminates manual booking hassles by providing:
 
-Smooth navigation with a fixed navbar and mobile menu support.
+- A responsive digital platform to explore available rooms.  
+- Transparent pricing and meal plan details.  
+- An easy-to-use booking form integrated with **FormSubmit.co**.  
+- A **secure payment gateway** to complete the booking instantly.  
 
-Attractive UI using gradients, shadows, and icons for better user experience.
+This project is ideal for hostel or PG owners who want a professional online booking system for students or professionals.
 
-🏠 Facilities
+---
 
-Display of all PG amenities like Wi-Fi, gym, laundry, and 24/7 security.
+## 🚀 Live Demo
+👉 https://lakshminarasimhareddy6244.github.io/lakshmi-narasimha-pg/
 
-Dynamic pricing plans for Single and Double sharing options.
+---
 
-Special Offers for early and full-year payments.
+## 🧱 Tech Stack
 
-🍽 Weekly Meal Plan
+| Technology | Purpose |
+|-------------|----------|
+| **HTML5** | Webpage structure and layout |
+| **Tailwind CSS** | Responsive design and modern styling |
+| **JavaScript (Vanilla)** | Interactivity (menu, smooth scroll, payment integration) |
+| **FormSubmit.co** | Handles form submissions via email |
+| **Payment Gateway (e.g., Razorpay)** | Secure online payment processing |
 
-A structured meal table displaying breakfast, lunch, and dinner menus for all 7 days.
+---
 
-💳 Payment Integration
+## ✨ Key Features
 
-Razorpay Checkout Integration for:
+✅ Fully responsive layout (mobile, tablet, desktop)  
+✅ Clean, elegant, and professional user interface  
+✅ Smooth scrolling between sections  
+✅ Hamburger menu for mobile navigation  
+✅ Booking form integrated with [FormSubmit.co](https://formsubmit.co)  
+✅ **Integrated payment system** for instant online booking confirmation  
+✅ Transparent pricing and detailed room plans  
+✅ Weekly meal plan with daily menu display  
+✅ Dedicated contact and inquiry section  
+✅ Lightweight, fast, and SEO-friendly  
 
-₹5000 Booking Fee Payment
+---
 
-Monthly Rent Payment with late fee calculation
+## 💳 Payment System Overview
 
-Late fee system: ₹100/day after 5-day grace period.
+The project includes a **secure online payment option** that allows users to pay their booking amount digitally.
 
-Generates a receipt after successful payment with all details.
+- Integrated with **Razorpay (or preferred gateway)**  
+- Supports UPI, Credit/Debit Cards, and Net Banking  
+- Real-time confirmation after payment  
+- Redirects to a **“Thank You” page** upon successful booking  
+- Helps PG management track confirmed payments  
 
-📞 Contact Section
+*(Note: You can configure your Razorpay key or API credentials in the JS file for real deployment.)*
 
-Direct call and email buttons for instant communication.
+---
 
-Google Mail compose link for quick email.
+## 📋 Sections Overview
 
-Embedded location details for easy navigation.
+1. **🏠 Why Choose Us** – Highlights the unique facilities and environment  
+2. **💰 Accommodation Options** – Details about room sharing, pricing, and offers  
+3. **🍛 Weekly Meal Plan** – Displays breakfast and dinner menus for each day  
+4. **💳 Payment Section** – Integrated payment gateway for instant booking  
+5. **📞 Contact Section** – Contact number and email for queries  
+6. **📝 Booking Form** – Easy-to-use form to collect user details and preferences  
 
-🧩 Tech Stack
-Technology	Purpose
-HTML5	Structure & Layout
-Tailwind CSS	Styling & Responsiveness
-JavaScript (Vanilla)	Interactivity & Razorpay Integration
-Razorpay API	Payment Gateway
-Google Fonts (Poppins)	Typography
+---
+
+## 🧩 File Structure
+
