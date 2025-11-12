@@ -750,44 +750,77 @@
   const prices = { "Single": 14999, "2-Sharing": 8999 };
   const lateFeePerDay = 100;
 
-  document.getElementById('pay-btn').addEventListener('click', ()=>{
-    document.getElementById('tenant-form-container').classList.toggle('hidden');
-    document.getElementById('tenant-details').classList.add('hidden');
+  const formContainer = document.getElementById('tenant-form-container');
+  const tenantDetails = document.getElementById('tenant-details');
+  const tenantName = document.getElementById('tenant-name');
+  const tenantRoom = document.getElementById('tenant-room');
+  const tenantLatefee = document.getElementById('tenant-latefee');
+  const payBtn = document.getElementById('pay-btn');
+  const submitBtn = document.getElementById('tenant-submit');
+  const payNowBtn = document.getElementById('razorpay-pay');
+
+  let currentTenant = null;
+  let total = 0;
+
+  // 🧭 Toggle contact form visibility
+  payBtn.addEventListener('click', ()=>{
+    formContainer.classList.toggle('hidden');
+    tenantDetails.classList.add('hidden');
   });
 
-  document.getElementById('tenant-submit').addEventListener('click', ()=>{
+  // 🧾 Submit contact number
+  submitBtn.addEventListener('click', ()=>{
     const contact = document.getElementById('tenant-contact').value.trim();
     if(!contact.match(/^\d{10}$/)){ alert('Enter a valid 10-digit contact'); return; }
+
     const tenant = tenants.find(t => t.contact === contact);
     if(!tenant){ alert('Tenant not found — demo dataset only'); return; }
 
+    currentTenant = tenant;
+
+    // 🔍 Check localStorage if already paid
+    const paidList = JSON.parse(localStorage.getItem('bless_payments') || '[]');
+    const alreadyPaid = paidList.some(p => p.contact === contact && isPaymentRecent(p.ts));
+
+    // 💰 If already paid recently — show “No Due”
+    if (alreadyPaid) {
+      tenantName.textContent = `Name: ${tenant.name}`;
+      tenantRoom.textContent = `Room Type: ${tenant.room} — Rent: ₹${prices[tenant.room]}`;
+      tenantLatefee.textContent = "✅ No Due (Payment Received)";
+      tenantDetails.classList.remove('hidden');
+      payNowBtn.style.display = "none";
+      return;
+    }
+
+    // 💵 Otherwise calculate due normally
     const today = new Date();
     const joinDate = new Date(tenant.joinDate);
-    // due date = joinDate + 30 days (monthly rent) — treat joinDate as last paid date in demo
-    const dueDate = new Date(joinDate.getTime() + (30 + 5) * 24 * 60 * 60 * 1000); // 30 + 5 (grace)
+    const dueDate = new Date(joinDate.getTime() + (30 + 5) * 24 * 60 * 60 * 1000); // 30 days + 5 grace
     let lateFee = 0;
     if(today > dueDate){
       const diffDays = Math.floor((today - dueDate)/(1000*60*60*24));
       lateFee = diffDays * lateFeePerDay;
     }
     const amount = prices[tenant.room] || 0;
-    const total = amount + lateFee;
+    total = amount + lateFee;
 
-    document.getElementById('tenant-name').textContent = `Name: ${tenant.name}`;
-    document.getElementById('tenant-room').textContent = `Room Type: ${tenant.room} — Rent: ₹${amount}`;
-    document.getElementById('tenant-latefee').textContent = `Late Fee: ₹${lateFee} | Total: ₹${total}`;
-    document.getElementById('tenant-details').classList.remove('hidden');
+    tenantName.textContent = `Name: ${tenant.name}`;
+    tenantRoom.textContent = `Room Type: ${tenant.room} — Rent: ₹${amount}`;
+    tenantLatefee.textContent = `Late Fee: ₹${lateFee} | Total: ₹${total}`;
+    tenantDetails.classList.remove('hidden');
+    payNowBtn.style.display = "inline-block";
 
-    document.getElementById('razorpay-pay').onclick = function(){
+    // 🧾 Payment handler
+    payNowBtn.onclick = function(){
       const options = {
-        key: "rzp_test_RRjkWWFPscy3b1", // replace with your key
+        key: "rzp_test_RRjkWWFPscy3b1", // Replace with your Razorpay test/live key
         amount: total * 100,
         currency: "INR",
         name: "BLESS PG Rent",
         description: "Monthly Rent Payment",
         prefill: { name: tenant.name, contact: tenant.contact },
         handler: function(response){
-          // show a simple receipt
+          // ✅ Payment successful
           const receipt = `
 Payment Receipt
 ------------------------
@@ -802,17 +835,33 @@ Date: ${new Date().toLocaleString()}
 Thank you!
           `;
           alert(receipt);
-          // For demo store
+
+          // 💾 Store in localStorage
           const pays = JSON.parse(localStorage.getItem('bless_payments')||'[]');
-          pays.push({tenant: tenant.name,room: tenant.room,amount: total,payment_id: response.razorpay_payment_id,ts: Date.now()});
+          pays.push({
+            contact: tenant.contact,
+            tenant: tenant.name,
+            room: tenant.room,
+            amount: total,
+            payment_id: response.razorpay_payment_id,
+            ts: Date.now()
+          });
           localStorage.setItem('bless_payments', JSON.stringify(pays));
-          document.getElementById('tenant-form-container').classList.add('hidden');
-          document.getElementById('tenant-details').classList.add('hidden');
+
+          // Update UI to show “No Due”
+          tenantLatefee.textContent = "✅ No Due (Payment Received)";
+          payNowBtn.style.display = "none";
         }
       };
       new Razorpay(options).open();
     };
   });
+
+  // Helper: Check if payment is within 30 days
+  function isPaymentRecent(timestamp) {
+    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+    return (Date.now() - timestamp) < THIRTY_DAYS;
+  }
 
   /* ---------------------------
      Contact form demo handler (localStorage)
@@ -888,6 +937,5 @@ Thank you!
   </script>
 </body>
 </html>
-
 
 
