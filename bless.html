@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="en" class="antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BLESS PG — Live Easy, Live Cozy</title>
+  <meta name="description" content="BLESS PG — Premium Paying Guest accommodation near Amity University Mumbai. Easy booking, secure payments, comfy rooms." />
+
+  <!-- Tailwind CDN (prototype) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS (animations) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --brand-1: #4f46e5;
+      --brand-2: #7c3aed;
+      --accent-grad: linear-gradient(90deg,var(--brand-1),var(--brand-2));
+      --glass: rgba(255,255,255,0.65);
+    }
+    html.dark{
+      --bg: #071023;
+      --card: rgba(9,12,18,0.72);
+      --muted: #9ca3af;
+      background-color: #071023;
+    }
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 400px at 10% 8%, rgba(124,58,237,0.06), transparent 8%),
+                  radial-gradient(900px 300px at 90% 88%, rgba(79,70,229,0.04), transparent 8%),
+                  var(--bg);
+      color: #0f172a;
+      transition: background-color .25s ease, color .25s ease;
+    }
+    html.dark body{ color: #e6eef8; }
+
+    .glass{ background: var(--glass); backdrop-filter: blur(6px); }
+    .card{ background: var(--card); transition: transform .18s ease, box-shadow .18s ease; }
+    .card:focus-within, .card:hover{ transform: translateY(-6px); box-shadow: 0 14px 30px rgba(2,6,23,0.12); }
+    .nav-link.active{ color: var(--brand-2); font-weight:600; }
+
+    /* lightbox & modal basics */
+    .ui-backdrop{ position: fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:80; background:rgba(2,6,23,0.6); }
+    .ui-modal{ max-width:920px; width:95%; border-radius:12px; overflow:hidden; }
+    .hidden-vis { display:none !important; }
+
+    /* small helpers for accessibility focus */
+    .focus-ring:focus { outline: 3px solid rgba(99,102,241,0.18); outline-offset:3px; border-radius:8px; }
+
+    /* responsive tweak for nav shadow overlap */
+    header { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+    /* small animation for modal */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fadeIn { animation: fadeIn .18s ease both; }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- HEADER / NAV -->
+  <header class="fixed w-full z-50 top-0 left-0">
+    <nav class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between glass rounded-b-2xl shadow-sm" aria-label="Main navigation">
+      <div class="flex items-center gap-4">
+        <a href="#home" class="text-2xl font-extrabold" id="brand">
+          <span style="background:var(--accent-grad); -webkit-background-clip:text; background-clip:text; color:transparent;">BLESS PG</span>
+        </a>
+        <p class="text-sm text-gray-500 hidden md:block" id="brand-sub">Near Amity University Mumbai</p>
+      </div>
+
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium" id="desktopNav">
+        <a class="nav-link hover:text-indigo-600 transition" href="#home">Home</a>
+        <a class="nav-link hover:text-indigo-600 transition" href="#about">About</a>
+        <a class="nav-link hover:text-indigo-600 transition" href="#rooms">Rooms</a>
+        <a class="nav-link hover:text-indigo-600 transition" href="#facilities">Facilities</a>
+        <a class="nav-link hover:text-indigo-600 transition" href="#gallery">Gallery</a>
+        <a class="nav-link hover:text-indigo-600 transition" href="#pricing">Pricing</a>
+        <a class="nav-link hover:text-indigo-600 transition" href="#withdrawal">Tenant Withdrawal</a>
+        <a class="nav-link hover:text-indigo-600 transition" href="#contact">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2 rounded-lg focus-ring" aria-pressed="false" aria-label="Toggle theme" title="Toggle dark mode">
+          <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+        </button>
+
+        <a href="#pricing" class="hidden md:inline-block px-4 py-2 rounded-lg text-white font-semibold shadow" style="background:var(--accent-grad);">Book Now</a>
+
+        <button id="mobileToggle" aria-expanded="false" class="md:hidden p-2 rounded-lg focus-ring" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="hidden bg-white/95 shadow-inner md:hidden">
+      <div class="max-w-3xl mx-auto p-4 flex flex-col gap-3 text-base">
+        <a href="#home" class="font-semibold">Home</a>
+        <a href="#about" class="font-semibold">About</a>
+        <a href="#rooms" class="font-semibold">Rooms</a>
+        <a href="#facilities" class="font-semibold">Facilities</a>
+        <a href="#gallery" class="font-semibold">Gallery</a>
+        <a href="#pricing" class="font-semibold">Pricing</a>
+        <a href="#withdrawal" class="font-semibold">Tenant Withdrawal</a>
+        <a href="#contact" class="font-semibold">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-28">
+  <!-- HERO -->
+<section id="home" class="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+  <div class="grid lg:grid-cols-2 gap-8 items-center">
+    
+    <!-- Left Content -->
+    <div data-aos="fade-right">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        Live Easy, Live Cozy — <span style="color:var(--brand-1)">BLESS PG</span>
+      </h1>
+      <p class="mt-4 text-gray-500 max-w-xl">
+        Premium student accommodation near Amity University Mumbai. Fully-furnished rooms, daily meals, high-speed Wi-Fi, 24/7 security, and simple online payments.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="#pricing" class="px-5 py-3 rounded-lg font-semibold shadow" style="background:var(--accent-grad); color:white;">Book A Room</a>
+        <button id="about-view" type="button" class="px-5 py-3 bg-white border border-gray-200 rounded-lg font-semibold shadow">About</button>
+      </div>
+
+      <!-- Features -->
+      <div class="mt-8 grid sm:grid-cols-3 gap-4 text-sm">
+        <div class="p-4 rounded-xl shadow card flex items-start gap-3 bg-white">
+          <div class="text-2xl">📶</div>
+          <div>
+            <div class="font-semibold">High-Speed Wi-Fi</div>
+            <div class="text-gray-500 text-sm">Unlimited data for study & streaming</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl shadow card flex items-start gap-3 bg-white">
+          <div class="text-2xl">🍽</div>
+          <div>
+            <div class="font-semibold">Daily Meals</div>
+            <div class="text-gray-500 text-sm">Nutritious and hygienic food served daily</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl shadow card flex items-start gap-3 bg-white">
+          <div class="text-2xl">🛡</div>
+          <div>
+            <div class="font-semibold">24/7 Security</div>
+            <div class="text-gray-500 text-sm">CCTV coverage and trained staff</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side Images -->
+    <div data-aos="fade-left" class="space-y-4 hidden lg:block">
+      <div class="grid grid-cols-2 gap-3">
+        <img 
+          loading="lazy" 
+          src="front.jpg" 
+          alt="room" 
+          class="rounded-xl shadow object-cover h-40 w-full" 
+        />
+        <img 
+          loading="lazy" 
+          src="ld.jpg" 
+          alt="study table" 
+          class="rounded-xl shadow object-cover h-40 w-full" 
+        />
+      </div>
+      <img 
+        loading="lazy" 
+        src="this.jpg" 
+        alt="lounge" 
+        class="rounded-xl shadow object-cover h-64 w-full" 
+      />
+    </div>
+
+  </div>
+</section>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-7xl mx-auto px-6 py-10">
+      <div class="rounded-2xl p-8 shadow card" data-aos="fade-up" aria-labelledby="about-heading">
+        <h2 id="about-heading" class="text-2xl font-bold">About BLESS PG</h2>
+        <p class="mt-3 text-gray-500">Comfort-first PG living with affordable plans tailored for students and working professionals. Click <button id="about-more" type="button" class="text-indigo-600 font-semibold underline inline-block">here</button> to read full details.</p>
+      </div>
+    </section>
+
+  <!-- FACILITIES -->
+<section id="facilities" class="max-w-7xl mx-auto px-6 py-10">
+  <h3 class="text-2xl font-bold mb-4 text-center">Facilities</h3>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">📺</div>
+      <div>
+        <div class="font-semibold">Television</div>
+        <div class="text-gray-500 text-sm">Common-area TV available for all residents</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🧊</div>
+      <div>
+        <div class="font-semibold">Refrigerator</div>
+        <div class="text-gray-500 text-sm">Shared fridge for storing food & beverages</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🧺</div>
+      <div>
+        <div class="font-semibold">Washing Machine</div>
+        <div class="text-gray-500 text-sm">Free access to washing machine</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🚿</div>
+      <div>
+        <div class="font-semibold">Hot Water</div>
+        <div class="text-gray-500 text-sm">24×7 geyser and clean bathrooms</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">📶</div>
+      <div>
+        <div class="font-semibold">High-Speed Internet</div>
+        <div class="text-gray-500 text-sm">Unlimited Wi-Fi with strong coverage</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🔥</div>
+      <div>
+        <div class="font-semibold">Common Gas</div>
+        <div class="text-gray-500 text-sm">Shared gas stove available anytime</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🧹</div>
+      <div>
+        <div class="font-semibold">Daily Cleaning</div>
+        <div class="text-gray-500 text-sm">Regular housekeeping and room maintenance</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🍽</div>
+      <div>
+        <div class="font-semibold">Daily Food</div>
+        <div class="text-gray-500 text-sm">Nutritious and hygienic meals</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🏋️‍♂️</div>
+      <div>
+        <div class="font-semibold">Mini Gym</div>
+        <div class="text-gray-500 text-sm">Basic fitness equipment available</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🎮</div>
+      <div>
+        <div class="font-semibold">Indoor Games</div>
+        <div class="text-gray-500 text-sm">Carrom, chess, and other indoor activities</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🏠</div>
+      <div>
+        <div class="font-semibold">Spacious Rooms</div>
+        <div class="text-gray-500 text-sm">Large rooms with comfortable space</div>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl shadow card flex items-start gap-3">
+      <div class="text-2xl">🚗</div>
+      <div>
+        <div class="font-semibold">Parking Area</div>
+        <div class="text-gray-500 text-sm">Safe parking for bikes & cars</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- ROOMS -->
+<section id="rooms" class="max-w-7xl mx-auto px-6 py-10">
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="text-2xl font-bold">Rooms & Pricing</h3>
+    <p class="text-gray-500">Select a plan and book instantly</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    
+    <!-- Single Sharing -->
+    <article class="rounded-2xl p-6 shadow card" data-aos="zoom-in">
+      <img 
+        loading="lazy" 
+        src="single.jpg" 
+        alt="single" 
+        class="rounded-xl w-full h-44 object-cover mb-4" 
+      />
+      <h4 class="font-semibold text-lg">Single Sharing</h4>
+      <p class="text-gray-500 text-sm mt-1">
+        Private room, attached study table, wardrobe & AC option.
+      </p>
+      <div class="mt-4 flex items-center justify-between">
+        <div class="text-xl font-extrabold" style="color:var(--brand-1)">₹14,999/mo</div>
+        <button class="bookNow px-3 py-2 rounded-lg text-white font-semibold" style="background:var(--accent-grad)" data-type="Single">Book</button>
+      </div>
+    </article>
+
+    <!-- 2-Sharing -->
+    <article class="rounded-2xl p-6 shadow card" data-aos="zoom-in" data-aos-delay="80">
+      <img 
+        loading="lazy" 
+        src="double.jpg" 
+        alt="2-sharing" 
+        class="rounded-xl w-full h-44 object-cover mb-4" 
+      />
+      <h4 class="font-semibold text-lg">2-Sharing</h4>
+      <p class="text-gray-500 text-sm mt-1">
+        Comfortable twin sharing rooms, shared wardrobe & study corner.
+      </p>
+      <div class="mt-4 flex items-center justify-between">
+        <div class="text-xl font-extrabold" style="color:var(--brand-1)">₹8,999/mo</div>
+        <button class="bookNow px-3 py-2 rounded-lg text-white font-semibold" style="background:var(--accent-grad)" data-type="2-Sharing">Book</button>
+      </div>
+    </article>
+
+    <!-- Add more room types here if needed -->
+    
+  </div>
+
+  <div class="mt-6 text-sm text-gray-500">
+    Each booking includes our standard meal plan. Security deposit and refundable policies are shown at checkout.
+  </div>
+</section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="max-w-7xl mx-auto px-6 py-10">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-2xl font-bold">Gallery</h3>
+        <p class="text-sm text-gray-500">Click images to enlarge</p>
+      </div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <img class="galleryImg rounded-xl object-cover h-44 w-full shadow cursor-zoom-in" loading="lazy" src="single.jpg" alt="Single room with study table" />
+        <img class="galleryImg rounded-xl object-cover h-44 w-full shadow cursor-zoom-in" loading="lazy" src="trade.jpg" alt="GYM" />
+        <img class="galleryImg rounded-xl object-cover h-44 w-full shadow cursor-zoom-in" loading="lazy" src="bui.jpg" alt="Building" />
+        <img class="galleryImg rounded-xl object-cover h-44 w-full shadow cursor-zoom-in" loading="lazy" src="ld.jpg" alt="Side view"/>
+        <img class="galleryImg rounded-xl object-cover h-44 w-full shadow cursor-zoom-in" loading="lazy" src="ing.jpg" alt="view" />
+        <img class="galleryImg rounded-xl object-cover h-44 w-full shadow cursor-zoom-in" loading="lazy" src="die.jpg" alt="view" />
+        <img class="galleryImg rounded-xl object-cover h-44 w-full shadow cursor-zoom-in" loading="lazy" src="two.jpg" alt="view" />
+        <img class="galleryImg rounded-xl object-cover h-44 w-full shadow cursor-zoom-in" loading="lazy" src="road.jpg" alt="view" />
+        <img class="galleryImg rounded-xl object-cover h-44 w-full shadow cursor-zoom-in" loading="lazy" src="cycle.jpg" alt="view" />
+          </div>
+    </section>
+
+  <!-- ✅ PRICING & BOOKING SECTION -->
+<section id="pricing" class="max-w-7xl mx-auto px-6 py-10">
+  <div class="grid lg:grid-cols-2 gap-8 items-start">
+    <!-- Pricing Snapshot -->
+    <div class="rounded-2xl p-6 shadow card bg-white">
+      <h3 class="text-xl font-bold mb-2">Pricing Snapshot</h3>
+      <ul class="space-y-3 text-gray-700">
+        <li class="flex justify-between"><span>Single Sharing</span> <strong>₹14,999/mo</strong></li>
+        <li class="flex justify-between"><span>2-Sharing</span> <strong>₹8,999/mo</strong></li>
+        <li class="flex justify-between"><span>Deposit</span> <strong>₹4,999</strong></li>
+      </ul>
+      <div class="mt-6 text-sm text-gray-500">
+        Security deposit ₹4,999/- refundable. Discounts available for 6-month and yearly prepay plans.
+      </div>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="bg-indigo-50 rounded-2xl p-8 shadow-lg">
+      <h3 class="text-2xl font-semibold text-indigo-700 mb-6 text-center">Room Booking Form</h3>
+
+      <form id="bookingForm" class="space-y-5">
+        <div>
+          <label class="block font-semibold mb-2">Full Name</label>
+          <input id="bName" name="Full Name" type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="Enter your full name" />
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-2">Email</label>
+          <input id="bEmail" name="Email" type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="your@email.com" />
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-2">Phone Number</label>
+          <input id="bPhone" name="Phone Number" type="tel" pattern="[0-9]{10}" required class="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="10-digit number" />
+        </div>
+
+        <div>
+          <label for="wDate" class="block font-semibold mb-2">Date of Joining</label>
+          <input type="date" id="wDate" name="Date of Joining" required class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none" />
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-2">Room Type</label>
+          <select id="bType" name="Room Type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+            <option value="">Select Room Type</option>
+            <option value="Single">Single Room</option>
+            <option value="2-Sharing">Double Sharing</option>
+          </select>
+        </div>
+
+        <div class="text-center pt-4">
+          <button type="button" id="payNowBtn" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow hover:bg-indigo-700 transition">
+            Pay Booking Fee (₹5,000)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ✅ PAYMENT DESK SECTION (Now directly below booking & pricing) -->
+  <div id="payment-desk" class="bg-white rounded-2xl shadow-lg p-8 mt-10">
+    <h3 class="text-3xl font-bold text-center mb-6 text-gray-800">💳 Payment Desk</h3>
+    <p class="text-center text-gray-600 mb-6">
+      Pay your monthly rent here. Grace period: 5 days. After that ₹100/day late fee.
+    </p>
+
+    <div class="text-center mb-6">
+      <button id="pay-btn"
+        class="bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-red-600 transition-colors font-bold">
+        💰 Pay Monthly Rent
+      </button>
+    </div>
+
+    <div id="tenant-form-container" class="hidden max-w-md mx-auto bg-white/90 p-6 rounded-2xl shadow-lg">
+      <label class="block font-semibold mb-2">Enter Contact Number</label>
+      <input type="tel" id="tenant-contact" placeholder="10-digit mobile number"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
+      <button id="tenant-submit" class="mt-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-semibold">
+        Submit
+      </button>
+    </div>
+
+    <div id="tenant-details" class="hidden max-w-md mx-auto mt-6 bg-white/90 p-6 rounded-2xl shadow-lg text-center">
+      <h4 class="text-xl font-bold mb-3 text-gray-800">Tenant Details</h4>
+      <p id="tenant-name" class="mb-2"></p>
+      <p id="tenant-room" class="mb-2"></p>
+      <p id="tenant-latefee" class="mb-4 text-red-600 font-semibold"></p>
+      <button id="razorpay-pay"
+        class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-green-600 transition-colors font-bold">
+        Pay Now
+      </button>
+    </div>
+  </div>
+</section>
+
+ <!-- CONTACT -->
+<section id="contact" class="max-w-7xl mx-auto px-6 py-10">
+  <div class="rounded-2xl p-6 shadow card bg-indigo-50">
+    <div class="grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <h3 class="text-2xl font-bold">Get in touch</h3>
+        <p class="text-gray-600 mt-2">Contact us for a tour, booking or any query.</p>
+        <div class="mt-4">
+          <a href="tel:+919063025417" class="inline-block px-4 py-2 rounded-lg text-white mr-2" style="background:var(--brand-1);">+91 9063025417</a>
+          <a href="tel:+918427764259" class="inline-block px-4 py-2 rounded-lg text-white mr-2" style="background:var(--brand-1);">+91 8427764259</a>
+          <a href="mailto:blesspg6244@gmail.com" class="inline-block px-4 py-2 rounded-lg border">blesspg6244@gmail.com</a>
+        </div>
+      </div>
+
+      <div>
+        <form 
+          id="contactForm" 
+          class="space-y-3 bg-white p-4 rounded-lg"
+          action="https://formsubmit.co/jayasimhareddy6244@gmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="New Contact Message - BLESS PG">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <!-- Optinal redirect after submit -->
+          <!--input type="hidden" name="_next" value="https://yourwebsite.com/thankyou.html"> -->
+
+          <input name="Name" placeholder="Name" class="w-full p-3 border rounded-lg" required />
+          <input name="Phone" placeholder="Phone" class="w-full p-3 border rounded-lg" required />
+          <textarea name="Message" placeholder="Message" class="w-full p-3 border rounded-lg h-24" required></textarea>
+          <div class="flex gap-2">
+            <button type="submit" class="flex-1 py-3 rounded-lg text-white font-semibold" style="background:var(--brand-1)">Send</button>
+            <a href="https://maps.google.com/?q=BLESS+PG+Amity+University+Mumbai" target="_blank" class="flex-1 py-3 rounded-lg border text-center">Open Map</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+  <!-- ✅ Tenant Withdrawal Section -->
+  <section id="withdrawal" class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <h3 class="text-3xl font-semibold text-center text-blue-600 mb-8">
+        Tenant Withdrawal Form
+      </h3>
+
+      <p class="text-center text-gray-600 mb-6">
+        Tenants can submit their withdrawal request when planning to vacate BLESS PG.
+        Please fill in all details correctly for smooth processing.
+      </p>
+
+      <!-- ✅ FormSubmit Integration -->
+      <form 
+        class="bg-gray-100 p-8 rounded-2xl shadow-lg space-y-5"
+        action="https://formsubmit.co/jayasimhareddy6244@gmail.com" 
+        method="POST"
+      >
+        <!-- Hidden Settings -->
+        <input type="hidden" name="_subject" value="Tenant Withdrawal Request - BLESS PG">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table"> <!-- nice email format -->
+        <!-- Optional redirect after submit -->
+        <!-- <input type="hidden" name="_next" value="https://yourwebsite.com/success.html"> -->
+
+        <!-- Full Name -->
+        <div>
+          <label for="wName" class="block font-semibold mb-2">Full Name</label>
+          <input 
+            type="text" id="wName" name="Full Name" required
+            class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+            placeholder="Enter your full name"
+          />
+        </div>
+
+        <!-- Room Number -->
+        <div>
+          <label for="wRoom" class="block font-semibold mb-2">Room Number</label>
+          <input 
+            type="text" id="wRoom" name="Room Number" required
+            class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+            placeholder="Room number (e.g., A-203)"
+          />
+        </div>
+
+        <!-- Date of Withdrawal -->
+        <div>
+          <label for="wDate" class="block font-semibold mb-2">Date of Withdrawal</label>
+          <input 
+            type="date" id="wDate" name="Date of Withdrawal" required
+            class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+          />
+        </div>
+
+        <!-- Reason -->
+        <div>
+          <label for="wReason" class="block font-semibold mb-2">Reason for Withdrawal</label>
+          <textarea 
+            id="wReason" name="Reason for Withdrawal" required rows="3"
+            class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+            placeholder="Please mention your reason for leaving"
+          ></textarea>
+        </div>
+
+        <!-- Bank Details -->
+        <div>
+          <label for="wBank" class="block font-semibold mb-2">
+            Bank Account Details (for Refund)
+          </label>
+          <input 
+            type="text" id="wBank" name="Bank Details" required
+            class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+            placeholder="Account No / UPI-ID"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button 
+          type="submit"
+          class="w-full py-3 rounded-lg text-white font-semibold transition duration-200"
+          style="background: var(--brand-1);"
+        >
+          Submit Withdrawal Request
+        </button>
+      </form>
+    </div>
+  </section>
+    <!-- ✅ Footer -->
+  <footer class="bg-indigo-600 text-white text-center py-6">
+    <p>© 2025 BLESS PG. All rights reserved. | Designed with by ❤️@JAISU </p>
+  </footer>
+
+
+  <!-- UI container for modals/lightbox -->
+  <div id="uiContainer" aria-hidden="true"></div>
+
+  <!-- AOS script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Razorpay Checkout (demo) -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <script>
+  AOS.init({duration:600, once:true});
+
+  /* ---------------------------
+     THEME (dark / light) toggle
+     --------------------------- */
+  (function(){
+    const html = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+
+    function setTheme(t){
+      if(t === 'dark'){
+        html.classList.add('dark');
+        toggle.setAttribute('aria-pressed','true');
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>';
+      } else {
+        html.classList.remove('dark');
+        toggle.setAttribute('aria-pressed','false');
+        icon.innerHTML = '<path d="M12 3v2M12 19v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>';
+      }
+    }
+
+    try {
+      const saved = localStorage.getItem('bless_theme');
+      if(saved) setTheme(saved);
+      else {
+        const prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefers ? 'dark' : 'light');
+      }
+    } catch(e){ /* localStorage may be disabled */ }
+
+    toggle.addEventListener('click', ()=>{
+      const isDark = document.documentElement.classList.contains('dark');
+      const next = isDark ? 'light' : 'dark';
+      try { localStorage.setItem('bless_theme', next); } catch(e){}
+      setTheme(next);
+    });
+  })();
+
+  /* ---------------------------
+     Mobile menu toggle
+     --------------------------- */
+  const mobileToggle = document.getElementById('mobileToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileToggle.addEventListener('click', ()=>{
+    const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+    mobileToggle.setAttribute('aria-expanded', String(!expanded));
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  /* ---------------------------
+     Smooth anchor nav + close mobile
+     --------------------------- */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', function(e){
+      const href = this.getAttribute('href');
+      if(!href || href === '#') return;
+      const target = document.querySelector(href);
+      if(target){
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({top, behavior:'smooth'});
+        if(!mobileMenu.classList.contains('hidden')){ mobileMenu.classList.add('hidden'); mobileToggle.setAttribute('aria-expanded','false'); }
+      }
+    });
+  });
+
+  /* ---------------------------
+     About modal
+     --------------------------- */
+function openAboutModal() {
+  const ui = document.getElementById('uiContainer');
+  ui.innerHTML = `
+    <div class="ui-backdrop" id="aboutModal" role="dialog" aria-modal="true" aria-label="About BLESS PG">
+      <div class="ui-modal card bg-white p-6 max-w-3xl mx-auto rounded-2xl shadow-lg relative animate-fadeIn">
+
+        <div class="flex justify-between items-start">
+          <div>
+            <h3 class="text-2xl font-bold">About BLESS PG</h3>
+            <p class="text-gray-600 mt-2 leading-relaxed">
+              BLESS PG offers a comfortable, secure, and affordable stay near Amity University Mumbai.
+              With well-furnished rooms, balanced meals, and a peaceful environment, it’s an ideal home
+              for students and young professionals.
+            </p>
+          </div>
+
+          <button id="aboutClose" aria-label="Close modal" class="text-gray-400 text-xl hover:text-gray-600">✕</button>
+        </div>
+
+        <div class="mt-4">
+          <img loading="lazy" src="ld.jpg" alt="BLESS PG Building"
+               class="rounded-lg w-full h-56 object-cover mt-4"/>
+        </div>
+
+        <div class="mt-6 text-right">
+          <button id="aboutClose2" class="px-4 py-2 rounded-lg bg-indigo-600 text-white">Close</button>
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  // Close buttons
+  document.getElementById('aboutClose').onclick = () => ui.innerHTML = '';
+  document.getElementById('aboutClose2').onclick = () => ui.innerHTML = '';
+
+  // Close when clicking outside modal
+  document.getElementById('aboutModal').addEventListener('click', (ev) => {
+    const box = document.querySelector('.ui-modal');
+    if (!box.contains(ev.target)) ui.innerHTML = '';
+  });
+}
+
+document.getElementById('about-view')?.addEventListener('click', openAboutModal);
+document.getElementById('about-more')?.addEventListener('click', openAboutModal);
+
+
+  /* ---------------------------
+     Gallery lightbox
+     --------------------------- */
+  document.querySelectorAll('.galleryImg').forEach(img => {
+  img.addEventListener('click', () => {
+
+    const ui = document.getElementById('uiContainer');
+
+    ui.innerHTML = `
+      <div id="lbBackdrop" class="ui-backdrop fixed inset-0 bg-black/70 flex items-center justify-center z-[1000]">
+        <div class="ui-modal p-4 bg-white rounded-lg max-w-[90vw] max-h-[90vh]">
+          <img src="${img.src}" alt="${img.alt}" class="w-full h-auto object-contain rounded-lg" />
+        </div>
+      </div>
+    `;
+
+    // Close on CLICK anywhere on backdrop
+    document.getElementById('lbBackdrop').onclick = () => {
+      ui.innerHTML = '';
+    };
+  });
+});
+
+  /* ---------------------------
+     Book Now buttons -> prefill booking form & scroll
+     --------------------------- */
+  document.querySelectorAll('.bookNow').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const type = btn.dataset.type || 'Single';
+      const bType = document.getElementById('bType');
+      if(bType) bType.value = type;
+      const target = document.getElementById('pricing');
+      if(target) {
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({top, behavior:'smooth'});
+      }
+    });
+  });
+
+  /* ---------------------------
+     Booking payment (Razorpay demo)
+     --------------------------- */
+  document.getElementById('payNowBtn').addEventListener('click', ()=>{
+    const name = document.getElementById('bName').value.trim();
+    const email = document.getElementById('bEmail').value.trim();
+    const phone = document.getElementById('bPhone').value.trim();
+    const type = document.getElementById('bType').value;
+    if(!name || !phone.match(/^\d{10}$/) || !type){ alert('Please enter name, valid 10-digit phone and select room type.'); return; }
+
+    const amount = 5000 * 100; // paise
+    const options = {
+      key: "rzp_test_RRjkWWFPscy3b1", // <-- replace with your Razorpay key
+      amount: amount,
+      currency: "INR",
+      name: "BLESS PG Booking",
+      description: `${type} booking advance`,
+      prefill: { name, email, contact: phone },
+      handler: function (resp) {
+        alert(`Booking successful!\nPayment ID: ${resp.razorpay_payment_id}\nWe will contact you for check-in details.`);
+        // store in localStorage for demo
+        const bookings = JSON.parse(localStorage.getItem('bless_bookings')||'[]');
+        bookings.push({name,phone,type,payment_id: resp.razorpay_payment_id,ts: Date.now()});
+        localStorage.setItem('bless_bookings', JSON.stringify(bookings));
+        document.getElementById('bookingForm').reset();
+      },
+      modal: { ondismiss: function(){ /* optional */ } }
+    };
+    new Razorpay(options).open();
+  });
+
+  /* ---------------------------
+     DEMO Tenant Data + Payment Desk logic
+     --------------------------- */
+  const tenants = [
+    { contact: "9063025417", name: "Jaisu", room: "Single", joinDate: "2025-09-01" },
+    { contact: "8885483749", name: "Reddy", room: "2-Sharing", joinDate: "2025-09-05" }
+  ];
+  const prices = { "Single": 14999, "2-Sharing": 8999 };
+  const lateFeePerDay = 100;
+
+  const formContainer = document.getElementById('tenant-form-container');
+  const tenantDetails = document.getElementById('tenant-details');
+  const tenantName = document.getElementById('tenant-name');
+  const tenantRoom = document.getElementById('tenant-room');
+  const tenantLatefee = document.getElementById('tenant-latefee');
+  const payBtn = document.getElementById('pay-btn');
+  const submitBtn = document.getElementById('tenant-submit');
+  const payNowBtn = document.getElementById('razorpay-pay');
+
+  let currentTenant = null;
+  let total = 0;
+
+  // 🧭 Toggle contact form visibility
+  payBtn.addEventListener('click', ()=>{
+    formContainer.classList.toggle('hidden');
+    tenantDetails.classList.add('hidden');
+  });
+
+  // 🧾 Submit contact number
+  submitBtn.addEventListener('click', ()=>{
+    const contact = document.getElementById('tenant-contact').value.trim();
+    if(!contact.match(/^\d{10}$/)){ alert('Enter a valid 10-digit contact'); return; }
+
+    const tenant = tenants.find(t => t.contact === contact);
+    if(!tenant){ alert('Tenant not found — demo dataset only'); return; }
+
+    currentTenant = tenant;
+
+    // 🔍 Check localStorage if already paid
+    const paidList = JSON.parse(localStorage.getItem('bless_payments') || '[]');
+    const alreadyPaid = paidList.some(p => p.contact === contact && isPaymentRecent(p.ts));
+
+    // 💰 If already paid recently — show “No Due”
+    if (alreadyPaid) {
+      tenantName.textContent = `Name: ${tenant.name}`;
+      tenantRoom.textContent = `Room Type: ${tenant.room} — Rent: ₹${prices[tenant.room]}`;
+      tenantLatefee.textContent = "✅ No Due (Payment Received)";
+      tenantDetails.classList.remove('hidden');
+      payNowBtn.style.display = "none";
+      return;
+    }
+
+    // 💵 Otherwise calculate due normally
+    const today = new Date();
+    const joinDate = new Date(tenant.joinDate);
+    const dueDate = new Date(joinDate.getTime() + (30 + 5) * 24 * 60 * 60 * 1000); // 30 days + 5 grace
+    let lateFee = 0;
+    if(today > dueDate){
+      const diffDays = Math.floor((today - dueDate)/(1000*60*60*24));
+      lateFee = diffDays * lateFeePerDay;
+    }
+    const amount = prices[tenant.room] || 0;
+    total = amount + lateFee;
+
+    tenantName.textContent = `Name: ${tenant.name}`;
+    tenantRoom.textContent = `Room Type: ${tenant.room} — Rent: ₹${amount}`;
+    tenantLatefee.textContent = `Late Fee: ₹${lateFee} | Total: ₹${total}`;
+    tenantDetails.classList.remove('hidden');
+    payNowBtn.style.display = "inline-block";
+
+    // 🧾 Payment handler
+    payNowBtn.onclick = function(){
+      const options = {
+        key: "rzp_test_RRjkWWFPscy3b1", // Replace with your Razorpay test/live key
+        amount: total * 100,
+        currency: "INR",
+        name: "BLESS PG Rent",
+        description: "Monthly Rent Payment",
+        prefill: { name: tenant.name, contact: tenant.contact },
+        handler: function(response){
+          // ✅ Payment successful
+          const receipt = `
+Payment Receipt
+------------------------
+Name: ${tenant.name}
+Room: ${tenant.room}
+Rent: ₹${amount}
+Late fee: ₹${lateFee}
+Total paid: ₹${total}
+Payment ID: ${response.razorpay_payment_id}
+Date: ${new Date().toLocaleString()}
+------------------------
+Thank you!
+          `;
+          alert(receipt);
+
+          // 💾 Store in localStorage
+          const pays = JSON.parse(localStorage.getItem('bless_payments')||'[]');
+          pays.push({
+            contact: tenant.contact,
+            tenant: tenant.name,
+            room: tenant.room,
+            amount: total,
+            payment_id: response.razorpay_payment_id,
+            ts: Date.now()
+          });
+          localStorage.setItem('bless_payments', JSON.stringify(pays));
+
+          // Update UI to show “No Due”
+          tenantLatefee.textContent = "✅ No Due (Payment Received)";
+          payNowBtn.style.display = "none";
+        }
+      };
+      new Razorpay(options).open();
+    };
+  });
+
+  // Helper: Check if payment is within 30 days
+  function isPaymentRecent(timestamp) {
+    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+    return (Date.now() - timestamp) < THIRTY_DAYS;
+  }
+
+  /* ---------------------------
+     Contact form demo handler (localStorage)
+     --------------------------- */
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    // default sends to formsubmit.co — keep that but also store demo copy locally
+    const name = document.getElementById('cName').value.trim();
+    const phone = document.getElementById('cPhone').value.trim();
+    const msg = document.getElementById('cMsg').value.trim();
+    if(!name || !msg){ e.preventDefault(); alert('Please include your name and message.'); return; }
+    const messages = JSON.parse(localStorage.getItem('bless_contacts')||'[]');
+    messages.push({name,phone,msg,ts: Date.now()});
+    localStorage.setItem('bless_contacts', JSON.stringify(messages));
+    // Let the form submit to formsubmit.co as well; if you want to prevent default remove this line
+    setTimeout(()=> { document.getElementById('contactForm').reset(); }, 300);
+  });
+
+  /* ---------------------------
+     Withdrawal form handler (demo)
+     --------------------------- */
+  document.getElementById('withdrawForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('wName').value.trim();
+    const room = document.getElementById('wRoom').value.trim();
+    const date = document.getElementById('wDate').value;
+    const reason = document.getElementById('wReason').value.trim();
+    const bank = document.getElementById('wBank').value.trim();
+    if(!name || !room || !date || !reason || !bank){ alert('Please fill all required fields.'); return; }
+    const reqs = JSON.parse(localStorage.getItem('bless_withdrawals')||'[]');
+    reqs.push({name,room,date,reason,bank,ts:Date.now()});
+    localStorage.setItem('bless_withdrawals', JSON.stringify(reqs));
+    document.getElementById('withdrawMsg').classList.remove('hidden');
+    document.getElementById('withdrawForm').reset();
+    const target = document.getElementById('withdrawal');
+    const top = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({top, behavior:'smooth'});
+  });
+
+  /* ---------------------------
+     Active nav highlighting
+     --------------------------- */
+  (function(){
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = Array.from(document.querySelectorAll('#desktopNav .nav-link'));
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const id = entry.target.id;
+        const link = navLinks.find(a=>a.getAttribute('href') === '#'+id);
+        if(entry.isIntersecting){
+          navLinks.forEach(a=>a.classList.remove('active'));
+          if(link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+    sections.forEach(s=>observer.observe(s));
+  })();
+
+  /* ---------------------------
+     Accessibility: close modals on ESC
+     --------------------------- */
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){ document.getElementById('uiContainer').innerHTML=''; if(!mobileMenu.classList.contains('hidden')){ mobileMenu.classList.add('hidden'); mobileToggle.setAttribute('aria-expanded','false'); } }
+  });
+
+  /* ---------------------------
+     Open map link
+     --------------------------- */
+  document.getElementById('openMap').addEventListener('click', function(e){
+    e.preventDefault();
+    window.open('https://www.google.com/maps/search/?api=1&query=BLESS+PG+Amity+University+Mumbai', '_blank', 'noopener');
+  });
+
+  </script>
+</body>
+</html>
+
